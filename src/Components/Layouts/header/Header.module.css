@@ -1,0 +1,113 @@
+.header {
+  /* width: 85%; */
+  margin-top: 24px;
+  margin-bottom: 16px;
+}
+
+.searchContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.searchBar {
+  width: 350px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #ffffff;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+}
+
+.searchIcon {
+  color: var(--text-color);
+  margin-left: 16px;
+}
+
+.input {
+  padding: 8px 16px;
+  outline: none;
+  font-size: 20px;
+}
+
+.input::placeholder {
+  color: var(--text-color);
+}
+
+.userContainer {
+  width: 350px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.bell,
+.userRound {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.userRound {
+  background: #eaf2ff;
+}
+
+.userRound :nth-child(1) {
+  color: #b4dbff;
+}
+
+.userinfo :nth-child(1) {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.userinfo :nth-child(2) {
+  font-size: 18px;
+  color: var(--text-color);
+}
+
+.profileCard {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.greet :nth-child(1) {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.greet :nth-child(2) {
+  font-size: 20px;
+  color: var(--text-color);
+}
+
+.dateContainer {
+  width: 350px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #ffffff;
+}
+
+.clock {
+  padding: 10px;
+  background: #756ef31a;
+  border-radius: 16px;
+  margin-left: 16px;
+}
+
+.clock :nth-child(1) {
+  color: #756ef3;
+}
+
+.date-and-time :nth-child(1) {
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.date-and-time :nth-child(2) {
+  font-size: 19px;
+  font-weight: 500;
+}
