@@ -1,0 +1,22 @@
+.cardContainer {
+  width: 490px;
+  height: 280px;
+  margin-top: 24px;
+  background: #ffffff;
+  border-radius: 14px;
+}
+
+.cardHeader {
+  padding: 10px 10px 0 10px;
+  margin-left: 12px;
+}
+
+.title {
+  font-weight: 500;
+  font-size: 22px;
+}
+
+.subtitle {
+  color: var(--text-color);
+  font-size: 13px;
+}

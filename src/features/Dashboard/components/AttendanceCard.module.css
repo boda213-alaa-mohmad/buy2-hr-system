@@ -1,0 +1,128 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.topSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-left: 22px;
+}
+
+.infoSide {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+}
+
+.statusBox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fingerIcon {
+  background-color: #f1f5f9;
+  padding: 10px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #475569;
+}
+
+.statusText {
+  font-size: 14px;
+  color: #475569;
+  margin: 0;
+  max-width: 180px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.timeIndicators {
+  display: flex;
+  gap: 20px;
+  font-size: 13px;
+  color: #64748b;
+}
+
+.timeItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.badge {
+  width: 3px;
+  height: 14px;
+  border-radius: 2px;
+}
+
+.greenBadge {
+  background-color: #22c55e;
+}
+
+.greenline {
+  color: #22c55e;
+}
+
+.redBadge {
+  background-color: #ef4444;
+}
+
+.redline {
+  color: #ef4444;
+}
+
+.timerSide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -28px;
+}
+
+.circleTimer {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 15px solid #E7E7E7;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 35px;
+}
+
+.timeText {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.timeLabel {
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.clockInBtn {
+  width: calc(440 / 490 * 100%);
+  background-color: #1e3a8a;
+  color: #ffffff;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin: 0 auto;
+}
+
+.clockInBtn:hover {
+  background-color: #1d4ed8;
+}
