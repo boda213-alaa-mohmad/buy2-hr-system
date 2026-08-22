@@ -1,0 +1,97 @@
+.createBtn {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  border: none;
+  color: #1e3a8a;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.RequestContainer {
+  position: relative;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.cardContainer {
+  margin-top: 15px;
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+}
+
+.cardContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  min-width: 320px;
+  border: 3px solid #ededed;
+  border-radius: 6px;
+  padding: 0 14px;
+  border-radius: 12px;
+}
+
+.prevBtn,
+.nextBtn {
+  cursor: pointer;
+}
+
+.topSection {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.date {
+  width: 70px;
+  background: #f2f1fe;
+  color: #756ef3;
+  font-weight: 600;
+  padding: 8px;
+  border-radius: 13px;
+}
+
+.status {
+  padding: 9px;
+  font-weight: 500;
+  border-radius: 12px;
+}
+
+.pending {
+  background: #fff3e8;
+  color: #f98016;
+}
+
+.rejected {
+  background: var(--color-red-100);
+  color: var(--color-red-700);
+}
+
+.approved {
+  background: var(--color-green-100);
+  color: var(--color-green-700);
+}
+
+.bottomSection {
+  margin-top: 5px;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: 600;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.time {
+  color: var(--text-color);
+}
+
+.desc {
+  color: #888888;
+}

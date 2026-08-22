@@ -1,5 +1,6 @@
 import AttendanceCard from "@/features/Dashboard/components/AttendanceCard";
 import DashboardHeader from "@/features/Dashboard/components/DashboardHeader";
+import RequestCard from "@/features/Dashboard/components/RequestsCard";
 import TaskCard from "@/features/Dashboard/components/TaskCard";
 import UpcomingMeetingsCard from "@/features/Dashboard/components/UpcomingMeetingsCard";
 
@@ -23,6 +24,7 @@ export default function DashboardPage() {
         }}
       >
         <UpcomingMeetingsCard />
+        <RequestCard />
       </div>
     </div>
   );

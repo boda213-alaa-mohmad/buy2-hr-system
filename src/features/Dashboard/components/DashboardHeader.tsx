@@ -1,5 +1,5 @@
 import { Clock3 } from "lucide-react";
-import styles from "@/Components/Layouts/header/Header.module.css";
+import styles from "@/features/Dashboard/components/DashboardHeader.module.css";
 
 export default function DashboardHeader() {
   return (

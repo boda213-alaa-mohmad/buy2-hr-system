@@ -1,0 +1,43 @@
+.profileCard {
+  display: flex;
+  justify-content: space-between;
+}
+
+.greet :nth-child(1) {
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.greet :nth-child(2) {
+  font-size: 20px;
+  color: var(--text-color);
+}
+
+.dateContainer {
+  width: 350px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: #ffffff;
+}
+
+.clock {
+  padding: 10px;
+  background: #756ef31a;
+  border-radius: 16px;
+  margin-left: 16px;
+}
+
+.clock :nth-child(1) {
+  color: #756ef3;
+}
+
+.date-and-time :nth-child(1) {
+  font-size: 16px;
+  color: var(--text-color);
+}
+
+.date-and-time :nth-child(2) {
+  font-size: 19px;
+  font-weight: 500;
+}
