@@ -1,4 +1,3 @@
-
 import styles from "./DashboardCard.module.css";
 interface DashboardCardProps {
   title: string;
@@ -17,12 +16,15 @@ export default function DashboardCard({
     <div className={styles.cardContainer}>
       {/* <div className={styles.cardHeader}> */}
       <div className={styles.cardHeader}>
-        <h2 className={styles.title}>{title}</h2>
-        <p className={styles.subtitle}>
-          {subtitle && <p className={styles.subtitle}>{subtitle}</p>}
-        </p>
+        <div>
+          <h2 className={styles.title}>{title}</h2>
+          <p className={styles.subtitle}>
+            {/* {subtitle && <p className={styles.subtitle}>{subtitle}</p>} */}
+            {subtitle}
+          </p>
+        </div>
+        {actions && <div className={styles.actions}>{actions}</div>}
       </div>
-      {actions && <div className={styles.action}>{actions}</div>}
       {/* </div> */}
       <div className={styles.cardBody}>{children}</div>
     </div>

@@ -8,6 +8,9 @@
 
 .cardHeader {
   padding: 10px 10px 0 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-left: 12px;
 }
 
@@ -19,4 +22,11 @@
 .subtitle {
   color: var(--text-color);
   font-size: 13px;
+}
+
+.actions {
+  color: #234199;
+  margin-right: 20px;
+  font-size: 17px;
+  font-weight: 500;
 }
