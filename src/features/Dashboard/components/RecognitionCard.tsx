@@ -44,7 +44,7 @@ const employees: Employee[] = [
     name: "Michael Brown",
     title: "Performer",
     points: 10,
-    date: "Fri 21 Jan 2024",
+    date: "Fri 30 Jan 2024",
     image: "/images/avatar.jpg",
   },
 ];
