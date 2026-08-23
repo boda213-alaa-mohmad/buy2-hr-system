@@ -1,0 +1,89 @@
+.RequestContainer {
+  position: relative;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.cardContainer {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+  padding: 4px 0;
+}
+
+.cardContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.card {
+  padding-left: 15px;
+  padding-right: 10px;
+  background: #fdf7eb;
+  border: 1px solid #faf0da;
+  min-width: 300px;
+  flex-shrink: 0;
+  border-radius: 12px;
+}
+
+.cardContent {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.imageContainer {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  border: 3px solid rgb(216, 149, 125);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.img {
+  border-radius: 50%;
+}
+
+.userinfo {
+  display: flex;
+  gap: 5px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  color: #c69208;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.thumps-number {
+  display: flex;
+  gap: 5px;
+}
+
+.ribbonContainer {
+  margin-top: -5px;
+}
+
+.date-thumps-number {
+  display: flex;
+  gap: 10px;
+}
+
+.prevBtn,
+.nextBtn {
+  color: #1e3a8a;
+  cursor: pointer;
+}
+
+.prevBtn {
+  left: -13px;
+}
+
+.nextBtn {
+  right: -12px;
+}
