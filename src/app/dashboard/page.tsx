@@ -6,6 +6,7 @@ import TaskCard from "@/features/Dashboard/components/TaskCard";
 import UpcomingMeetingsCard from "@/features/Dashboard/components/UpcomingMeetingsCard";
 import styles from "./page.module.css";
 import { Rewards } from "@/features/Dashboard/components/Rewards";
+import News from "@/features/Dashboard/components/News";
 
 export default function DashboardPage() {
   return (
@@ -24,6 +25,9 @@ export default function DashboardPage() {
         <div>
           <RecognitionCard />
           <Rewards />
+        </div>
+        <div>
+          <News />
         </div>
       </div>
     </div>
