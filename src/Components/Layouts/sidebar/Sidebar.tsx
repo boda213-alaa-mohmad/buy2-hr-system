@@ -34,7 +34,7 @@ const sidebarItems: SidebarItem[] = [
   },
   {
     title: "My Tasks",
-    href: "/dashboard/tasks",
+    href: "/dashboard/my-tasks",
     icon: ListTodo,
   },
   {

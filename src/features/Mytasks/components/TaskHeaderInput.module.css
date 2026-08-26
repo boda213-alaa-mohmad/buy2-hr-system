@@ -1,0 +1,116 @@
+.inputContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.taskInput {
+  padding: 9px 18px;
+  font-size: 20px;
+  border: 2px solid #f6f6f6;
+  outline: none;
+  border: 1.5px solid #e5e7eb;
+  flex: 1;
+}
+
+.dropdownBtn {
+  background: #234199;
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 0 8px 8px 0;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdownBtn:hover {
+  background: var(--primary-hover);
+}
+
+.dropdownMenu {
+  margin-top: 16px;
+}
+
+.searchWrapper {
+  padding: 15px;
+  border-radius: 8px;
+  border: 2px solid #f6f6f6;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.searchIcon {
+  color: #9ca3af;
+}
+
+.searchInput {
+  flex: 1;
+  font-size: 20px;
+  outline: none;
+}
+
+.arrow {
+  transition: transform 0.2s ease;
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+}
+
+.lists {
+  height: 260px;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.lists::-webkit-scrollbar {
+  width: 6px;
+}
+
+.lists::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 8px;
+}
+
+.lists::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 8px;
+}
+
+.arrowOpen {
+  transition: transform 0.2s;
+  transform: rotate(180deg);
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  font-size: 19px;
+  font-weight: 400;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    color 0.2s;
+}
+
+.listItem:hover {
+  background: #fafafb;
+  color: var(--primary-hover);
+}
+
+.radioCircle {
+  width: 21px;
+  height: 21px;
+  border: 2px solid #d1d5db;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
