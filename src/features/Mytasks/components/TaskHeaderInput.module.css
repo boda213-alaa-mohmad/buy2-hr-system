@@ -62,7 +62,7 @@
 }
 
 .lists {
-  height: 260px;
+  max-height: 260px;
   margin-top: 16px;
   display: flex;
   flex-direction: column;
@@ -113,4 +113,14 @@
   border: 2px solid #d1d5db;
   border-radius: 50%;
   box-sizing: border-box;
+}
+
+.selected {
+  border: 6px solid #234199;
+}
+
+.noResults {
+  font-size: 22px;
+  text-align: center;
+  color: var(--color-red-600)
 }

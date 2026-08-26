@@ -18,6 +18,14 @@ const mockLists = [
 
 export default function TaskHeaderInput() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  const filterMockLists = mockLists.filter((item) => {
+    return item.name.toLowerCase().includes(searchQuery.toLowerCase());
+  });
+
+  const selectedItem = mockLists.find((item) => item.id === selectedId);
 
   return (
     <div className={styles.wrapper}>
@@ -36,7 +44,7 @@ export default function TaskHeaderInput() {
           }}
           aria-expanded={isOpen}
         >
-          <span>Select from lists</span>
+          <span>{selectedItem ? selectedItem.name : "Select from lists"}</span>
           <ChevronDown
             size={18}
             className={`${styles.arrow} ${isOpen ? styles.arrowOpen : ""}`}
@@ -54,19 +62,37 @@ export default function TaskHeaderInput() {
               type="text"
               placeholder="Search"
               className={styles.searchInput}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
 
           {/* items mocklists */}
           <ul className={styles.lists}>
-            {mockLists.map((item) => {
-              return (
-                <li key={item.id} className={styles.listItem}>
-                  <span className={styles.listName}>{item.name}</span>
-                  <span className={styles.radioCircle} />
-                </li>
-              );
-            })}
+            {filterMockLists.length > 0 ? (
+              filterMockLists.map((item) => {
+                const isSelect = item.id === selectedId;
+                return (
+                  <li
+                    key={item.id}
+                    className={styles.listItem}
+                    onClick={() => {
+                      setSelectedId(item.id);
+                      setIsOpen(false);
+                    }}
+                  >
+                    <span className={styles.listName}>{item.name}</span>
+                    <span
+                      className={`${styles.radioCircle} ${
+                        isSelect ? styles.selected : ""
+                      }`}
+                    />
+                  </li>
+                );
+              })
+            ) : (
+              <li className={styles.noResults}>No items found</li>
+            )}
           </ul>
         </div>
       )}
