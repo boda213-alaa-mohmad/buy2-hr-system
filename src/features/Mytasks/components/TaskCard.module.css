@@ -1,0 +1,108 @@
+.container {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  width: 350px;
+  border: 1px solid var(--border-color);
+  padding: 16px;
+  border-radius: 16px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-name {
+  background: #f2f1fe;
+  color: #756ef3;
+  padding: 4px 10px;
+  font-size: 19px;
+  font-weight: 400;
+}
+
+.iconsContainer {
+  display: flex;
+  gap: 16px;
+}
+
+.icons {
+  cursor: pointer;
+}
+
+.pencil {
+  color: #234199;
+}
+
+.trash {
+  color: #ff2f43;
+}
+
+.eye {
+  color: #3852a2;
+}
+
+.chevronDown {
+  color: #0c91e4;
+}
+
+.contentCard {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.taskName {
+  font-weight: 400;
+  background: var(--item-bg);
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.containerDate {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.calendarWithText {
+  background: var(--item-bg);
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 400;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex: 2;
+}
+
+.chevronDownWithText {
+  background: var(--item-bg);
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 4px;
+}
+
+.footer {
+  background: var(--item-bg);
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.img {
+  border-radius: 50%;
+}

@@ -3,6 +3,7 @@ import TaskHeaderInput from "@/features/Mytasks/components/TaskHeaderInput";
 import styles from "./page.module.css";
 import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
+import TaskCard from "@/features/Mytasks/components/TaskCard";
 
 export default function AddTask() {
   return (
@@ -23,6 +24,7 @@ export default function AddTask() {
         <h2 className={styles.title}>Add Task</h2>
       </div>
       <TaskHeaderInput />
+      <TaskCard />
     </section>
   );
 }
