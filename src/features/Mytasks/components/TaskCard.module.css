@@ -19,11 +19,12 @@
 }
 
 .list-name {
+  border-radius: 12px;
   background: #f2f1fe;
   color: #756ef3;
   padding: 4px 10px;
   font-size: 19px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .iconsContainer {
