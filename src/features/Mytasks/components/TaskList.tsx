@@ -1,11 +1,8 @@
 "use client";
-import styles from "./TaskCard.module.css";
+import styles from "./TaskList.module.css";
 import { Pencil, Trash2, Eye, Calendar, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { Task } from "@/types/task";
-import { useState } from "react";
-
-// todo: <TaskCard key={task.id} task={task} onDelete={deleteTask} /> later
 
 export const initialTasks: Task[] = [
   {
@@ -94,78 +91,77 @@ export const initialTasks: Task[] = [
   },
 ];
 
-export default function TaskCard() {
-  const [tasks, setTasks] = useState<Task[]>(initialTasks);
-  console.log(tasks);
-
-  function deleteTask(id: string) {
-    setTasks(
-      tasks.filter((task) => {
-        return task.id !== id;
-      }),
-    );
-  }
-
+export default function TaskList({
+  task: tasks,
+  onDeleteTask,
+}: {
+  task: Task[];
+  onDeleteTask: (id: string) => void;
+}) {
   return (
     <section className={styles.container}>
-      {tasks.map((task) => {
-        return (
-          <div className={styles.card} key={task.id}>
-            <header className={styles.header}>
-              <h3 className={styles["list-name"]}>{task.listName}</h3>
-              <div className={styles.iconsContainer}>
-                <Pencil
-                  size={20}
-                  className={`${styles.pencil} ${styles.icons}`}
-                />
-                <Trash2
-                  size={20}
-                  className={`${styles.trash} ${styles.icons}`}
-                  onClick={() => {
-                    deleteTask(task.id);
-                  }}
-                />
-                <Eye size={20} className={`${styles.eye} ${styles.icons}`} />
-              </div>
-            </header>
-
-            <div className={styles.contentCard}>
-              {/* content task */}
-              <div className={styles.taskName}>
-                <p>{task.title}</p>
-              </div>
-
-              {/* date with low or high */}
-              <div className={styles.containerDate}>
-                <div className={styles.calendarWithText}>
-                  <p>{task.dueDate}</p>
-                  <Calendar size={20} className={styles.icons} />
-                </div>
-                {/* low or high or medium */}
-                <div className={styles.chevronDownWithText}>
-                  <ChevronDown
-                    className={`${styles.chevronDown} ${styles.icons} `}
+      {tasks.length > 0 ? (
+        tasks.map((task) => {
+          return (
+            <div className={styles.card} key={task.id}>
+              <header className={styles.header}>
+                <h3 className={styles["list-name"]}>{task.listName}</h3>
+                <div className={styles.iconsContainer}>
+                  <Pencil
                     size={20}
+                    className={`${styles.pencil} ${styles.icons}`}
                   />
-                  <span>{task.priority}</span>
+                  <Trash2
+                    size={20}
+                    className={`${styles.trash} ${styles.icons}`}
+                    onClick={() => {
+                      onDeleteTask(task.id);
+                    }}
+                  />
+                  <Eye size={20} className={`${styles.eye} ${styles.icons}`} />
                 </div>
-              </div>
+              </header>
 
-              {/* footer card */}
-              <div className={styles.footer}>
-                <Image
-                  className={styles.img}
-                  src={task.assignee.avatar}
-                  alt="avatar"
-                  width={40}
-                  height={40}
-                />
-                <p>{task.assignee.name}</p>
+              <div className={styles.contentCard}>
+                {/* content task */}
+                <div className={styles.taskName}>
+                  <p>{task.title}</p>
+                </div>
+
+                {/* date with low or high */}
+                <div className={styles.containerDate}>
+                  <div className={styles.calendarWithText}>
+                    <p>{task.dueDate}</p>
+                    <Calendar size={20} className={styles.icons} />
+                  </div>
+                  {/* low or high or medium */}
+                  <div className={styles.chevronDownWithText}>
+                    <ChevronDown
+                      className={`${styles.chevronDown} ${styles.icons} `}
+                      size={20}
+                    />
+                    <span>{task.priority}</span>
+                  </div>
+                </div>
+
+                {/* footer card */}
+                <div className={styles.footer}>
+                  <Image
+                    className={styles.img}
+                    src={task.assignee.avatar}
+                    alt="avatar"
+                    width={40}
+                    height={40}
+                  />
+                  <p>{task.assignee.name}</p>
+                </div>
               </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })
+      ) : (
+        <p className={styles.noResults}>No Tasks Yet</p>
+      )}
     </section>
   );
 }

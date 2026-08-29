@@ -1,11 +1,25 @@
 "use client";
-import TaskHeaderInput from "@/features/Mytasks/components/TaskHeaderInput";
 import styles from "./page.module.css";
 import { ChevronLeft } from "lucide-react";
+import { useState } from "react";
 import Link from "next/link";
-import TaskCard from "@/features/Mytasks/components/TaskCard";
+import AddTaskForm from "@/features/Mytasks/components/AddTaskForm";
+import TaskList, { initialTasks } from "@/features/Mytasks/components/TaskList";
+import { Task } from "@/types/task";
 
 export default function AddTask() {
+  const [tasks, setTasks] = useState(initialTasks);
+
+  //? adding task
+  function handleAddTask(newTask: Task) {
+    setTasks((prevTasks) => [...prevTasks, newTask]);
+  }
+
+  //! deleting task
+  function handleDeleteTask(id: string) {
+    setTasks((prevTasks) => prevTasks.filter((item) => item.id !== id));
+  }
+
   return (
     <section className={styles.container} aria-labelledby="add-task-heading">
       {/* Header Container */}
@@ -23,8 +37,9 @@ export default function AddTask() {
         {/* Page Title */}
         <h2 className={styles.title}>Add Task</h2>
       </div>
-      <TaskHeaderInput />
-      <TaskCard />
+
+      <AddTaskForm onAddTask={handleAddTask} />
+      <TaskList task={tasks} onDeleteTask={handleDeleteTask} />
     </section>
   );
 }

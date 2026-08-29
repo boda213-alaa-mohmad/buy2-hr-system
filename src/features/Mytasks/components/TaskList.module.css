@@ -19,6 +19,7 @@
 }
 
 .list-name {
+  width: 190px;
   border-radius: 12px;
   background: #f2f1fe;
   color: #756ef3;
@@ -106,4 +107,12 @@
 
 .img {
   border-radius: 50%;
+}
+
+.noResults {
+  width: 100%;
+  font-size: 30px;
+  text-align: center;
+  color: var(--color-red-600);
+  padding-bottom: 8px;
 }
