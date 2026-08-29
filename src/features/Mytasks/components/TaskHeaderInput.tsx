@@ -64,9 +64,9 @@ export default function TaskHeaderInput({
   const selectedItem = mockLists.find((item) => item.id === selectedListId);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} ref={myDivRef}>
       {/* input + button */}
-      <div className={styles.inputContainer} ref={myDivRef}>
+      <div className={styles.inputContainer}>
         <input
           type="text"
           placeholder="Enter name task"
