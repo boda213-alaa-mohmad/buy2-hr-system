@@ -29,7 +29,7 @@
 }
 
 .subTaskContainer {
-  height: 350px;
+  max-height: 350px;
   overflow-y: auto;
   margin-top: 20px;
   margin-right: 20px;
@@ -63,7 +63,51 @@
   font-size: 20px;
 }
 
+.icon {
+  color: #41ae0b;
+}
+
 .trashIcon {
   color: var(--color-red-500);
   cursor: pointer;
+}
+
+.inputContainer {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.desc {
+  width: 460px;
+  margin-top: 10px;
+  padding: 16px;
+  font-size: 20px;
+  outline: none;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-sizing: border-box;
+}
+
+.submit {
+  margin-top: 20px;
+  width: 100%;
+  background: #113db4;
+  color: #ffffff;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 12px;
+  font-size: 20px;
+  transition: background-color 0.2s;
+}
+
+.submit:hover {
+  background: #1d4ed8;
+}
+
+.noResults {
+  font-size: 22px;
+  text-align: center;
+  color: var(--color-red-600);
+  font-weight: 600;
 }

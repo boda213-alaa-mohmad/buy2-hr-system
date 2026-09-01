@@ -43,3 +43,39 @@
 //     </div>
 //   );
 // }
+
+import { X } from "lucide-react";
+import styles from "./ConfirmModal.module.css";
+
+interface ConfirmModalProps {
+  onClose?: () => void;
+  icon: React.ReactNode;
+  children: React.ReactNode;
+  variant?: "danger" | "success" | "primary";
+}
+
+export default function ConfirmModal({
+  icon,
+  children,
+  variant = "primary",
+  onClose,
+}: ConfirmModalProps) {
+  return (
+    <div className={styles.container}>
+      <div className={styles.card}>
+        {/* X */}
+        <button className={styles.x}>
+          <X size={20} onClick={onClose} />
+        </button>
+
+        {/* icon */}
+        <div className={styles.ContainerIconCenter}>
+          <div className={`${styles.containerIcon} ${styles[variant]}`}>
+            <div>{icon}</div>
+          </div>
+        </div>
+        <div>{children}</div>
+      </div>
+    </div>
+  );
+}
