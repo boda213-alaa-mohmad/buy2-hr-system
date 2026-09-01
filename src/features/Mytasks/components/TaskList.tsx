@@ -3,6 +3,7 @@ import styles from "./TaskList.module.css";
 import { Pencil, Trash2, Eye, Calendar, ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { Task } from "@/types/task";
+import Link from "next/link";
 
 export const initialTasks: Task[] = [
   {
@@ -107,10 +108,12 @@ export default function TaskList({
               <header className={styles.header}>
                 <h3 className={styles["list-name"]}>{task.listName}</h3>
                 <div className={styles.iconsContainer}>
-                  <Pencil
-                    size={20}
-                    className={`${styles.pencil} ${styles.icons}`}
-                  />
+                  <Link href={`/dashboard/my-tasks/edit/${task.id}`}>
+                    <Pencil
+                      size={20}
+                      className={`${styles.pencil} ${styles.icons}`}
+                    />
+                  </Link>
                   <Trash2
                     size={20}
                     className={`${styles.trash} ${styles.icons}`}

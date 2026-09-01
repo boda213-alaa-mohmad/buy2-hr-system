@@ -89,7 +89,10 @@ export default function SideBar() {
         />
       </Link>
       {sidebarItems.map(function (side, index) {
-        const isActive = pathname === side.href;
+        const isActive =
+          side.href === "/dashboard"
+            ? pathname === "/dashboard"
+            : pathname.startsWith(side.href);
         return (
           <Link href={side.href} key={index}>
             <div

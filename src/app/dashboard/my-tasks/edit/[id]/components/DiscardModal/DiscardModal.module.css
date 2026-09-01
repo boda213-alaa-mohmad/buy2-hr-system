@@ -1,0 +1,207 @@
+/* .card {
+
+  width: 460px;
+
+  position: absolute;
+
+  top: 50%;
+
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-around;
+
+  background: var(--card-bg);
+
+  border-radius: 24px;
+
+}
+
+
+
+.containerClose {
+
+  display: flex;
+
+  justify-content: flex-end;
+
+  margin-bottom: 24px;
+
+}
+
+
+
+.closeBtn {
+
+  margin-right: 32px;
+
+  color: #121212;
+
+  font-size: 18px;
+
+  font-weight: 500;
+
+  cursor: pointer;
+
+}
+
+
+
+.containerContent {
+
+  width: 400px;
+
+  height: 230px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  margin: 0 32px 40px 32px;
+
+}
+
+
+
+.containerIcon {
+
+  width: 94px;
+
+  height: 94px;
+
+  border-radius: 50%;
+
+  display: flex;
+
+  align-items: center;
+
+  background: #ffebed;
+
+}
+
+
+
+.icon {
+
+  color: var(--color-red-400);
+
+  margin: 0 auto;
+
+}
+
+
+
+.question {
+
+  margin-top: 40px;
+
+  font-size: 25px;
+
+  font-weight: 600;
+
+}
+
+
+
+.confirmMessage {
+
+  width: 295px;
+
+  height: 40px;
+
+  margin-top: 16px;
+
+  font-size: 17px;
+
+  font-weight: 500;
+
+  color: var(--text-color);
+
+  text-align: center;
+
+}
+
+
+
+.containerBtn {
+
+  margin: 40px 32px 32px 32px;
+
+  display: flex;
+
+  gap: 16px;
+
+  justify-content: space-between;
+
+}
+
+
+
+.btn {
+
+  width: 190px;
+
+  text-align: center;
+
+  padding: 16px;
+
+  font-size: 22px;
+
+  font-weight: 500;
+
+  border-radius: 16px;
+
+  transition:
+
+    background-color 0.2s,
+
+    color 0.5s;
+
+  cursor: pointer;
+
+}
+
+
+
+.cancel {
+
+  color: #234199;
+
+  border: 1px solid #234199;
+
+}
+
+
+
+.cancel:hover {
+
+  background: #8099e4;
+
+  color: #fff;
+
+}
+
+
+
+.delete {
+
+  color: #fff1f2;
+
+  background: #ff2f43;
+
+}
+
+
+
+.delete:hover {
+
+  background: #bb0a1c;
+
+} */
