@@ -1,0 +1,30 @@
+.container {
+  margin-top: 16px;
+  width: 630px;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding-bottom: 24px;
+}
+
+.inputContainer {
+  padding: 24px 20px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.desc {
+  width: 590px;
+  min-height: 100px;
+  margin-top: 10px;
+  padding: 16px;
+  font-size: 20px;
+  outline: none;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  box-sizing: border-box;
+  overflow: hidden;
+  resize: none;
+}

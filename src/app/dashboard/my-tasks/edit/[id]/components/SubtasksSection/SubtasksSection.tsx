@@ -58,6 +58,83 @@ export default function SubtasksSection() {
             <Trash2 size={20} className={styles.trashIcon} aria-hidden="true" />
           </button>
         </div>
+
+        <div className={styles.subTasks}>
+          <p>Change the icons to font awesome icons.</p>
+          <button
+            type="button"
+            className={styles.trashBtn}
+            aria-label="Delete subtask"
+          >
+            <Trash2 size={20} className={styles.trashIcon} aria-hidden="true" />
+          </button>
+        </div>
+
+        <div className={styles.subTasks}>
+          <p>Change the icons to font awesome icons.</p>
+          <button
+            type="button"
+            className={styles.trashBtn}
+            aria-label="Delete subtask"
+          >
+            <Trash2 size={20} className={styles.trashIcon} aria-hidden="true" />
+          </button>
+        </div>
+
+        <div className={styles.subTasks}>
+          <p>Change the icons to font awesome icons.</p>
+          <button
+            type="button"
+            className={styles.trashBtn}
+            aria-label="Delete subtask"
+          >
+            <Trash2 size={20} className={styles.trashIcon} aria-hidden="true" />
+          </button>
+        </div>
+
+        <div className={styles.subTasks}>
+          <p>Change the icons to font awesome icons.</p>
+          <button
+            type="button"
+            className={styles.trashBtn}
+            aria-label="Delete subtask"
+          >
+            <Trash2 size={20} className={styles.trashIcon} aria-hidden="true" />
+          </button>
+        </div>
+
+        <div className={styles.subTasks}>
+          <p>Change the icons to font awesome icons.</p>
+          <button
+            type="button"
+            className={styles.trashBtn}
+            aria-label="Delete subtask"
+          >
+            <Trash2 size={20} className={styles.trashIcon} aria-hidden="true" />
+          </button>
+        </div>
+
+        <div className={styles.subTasks}>
+          <p>Change the icons to font awesome icons.</p>
+          <button
+            type="button"
+            className={styles.trashBtn}
+            aria-label="Delete subtask"
+          >
+            <Trash2 size={20} className={styles.trashIcon} aria-hidden="true" />
+          </button>
+        </div>
+
+        <div className={styles.subTasks}>
+          <p>Change the icons to font awesome icons.</p>
+          <button
+            type="button"
+            className={styles.trashBtn}
+            aria-label="Delete subtask"
+          >
+            <Trash2 size={20} className={styles.trashIcon} aria-hidden="true" />
+          </button>
+        </div>
       </div>
     </section>
   );

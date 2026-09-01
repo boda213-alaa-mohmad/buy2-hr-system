@@ -29,8 +29,25 @@
 }
 
 .subTaskContainer {
+  height: 350px;
+  overflow-y: auto;
   margin-top: 20px;
   margin-right: 20px;
+}
+
+.subTaskContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.subTaskContainer::-webkit-scrollbar-track {
+  margin-top: 16px;
+  background: #f1f5f9;
+  border-radius: 8px;
+}
+
+.subTaskContainer::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 8px;
 }
 
 .subTasks {
@@ -50,4 +67,3 @@
   color: var(--color-red-500);
   cursor: pointer;
 }
-

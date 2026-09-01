@@ -1,6 +1,8 @@
 import styles from "./page.module.css";
 import EditHeader from "./components/EditHeader/EditHeader";
 import SubtasksSection from "./components/SubtasksSection/SubtasksSection";
+import TaskSidebarForm from "./components/TaskSidebarForm/TaskSidebarForm";
+import TaskDescription from "./components/TaskDescription/TaskDescription";
 
 export default async function Page({
   params,
@@ -17,13 +19,13 @@ export default async function Page({
 
         {/* container */}
         <div>
-          {/* left side */}
-          <div>
+          <div className={styles["subTask-and-taskSidebar"]}>
             <SubtasksSection />
+            <TaskSidebarForm />
           </div>
 
-          {/* right side */}
-          <div></div>
+          <TaskDescription />
+
         </div>
       </div>
     </div>
