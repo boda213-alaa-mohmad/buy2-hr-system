@@ -6,6 +6,8 @@ import ConfirmModal from "@/Components/shared/ConfirmModal/ConfirmModal";
 
 export default function SubtasksSection() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [taskToDelete, setTaskToDelete] = useState<number | null>(null);
+  const [isOpenDelete, setIsOpenDelete] = useState<boolean>(false);
   const [inputSubTask, setInputSubTask] = useState<string>("");
   const [subtasks, setSubtasks] = useState([
     { id: 1, title: "Change the icons to font awesome icons." },
@@ -75,7 +77,10 @@ export default function SubtasksSection() {
                 type="button"
                 className={styles.trashBtn}
                 aria-label={`Delete subtask: ${item.title}`}
-                onClick={() => deleteSubTask(item.id)}
+                onClick={() => {
+                  setTaskToDelete(item.id);
+                  setIsOpenDelete(true);
+                }}
               >
                 <Trash2
                   size={20}
@@ -89,6 +94,43 @@ export default function SubtasksSection() {
           <p className={styles.noResults}>No subTasks Yet</p>
         )}
       </div>
+
+      {isOpenDelete && (
+        <ConfirmModal
+          variant="danger"
+          icon={<Trash2 size={48} className={styles.trashIcon} />}
+          onClose={() => {
+            setIsOpenDelete(false);
+          }}
+        >
+          <div className={styles.containerMessageDeleting}>
+            <h2 className={styles.message}>Delete Task?</h2>
+            <p className={styles.confirmMessage}>
+              Are you sure you want to delete this task? This action is
+              irreversible!
+            </p>
+            <div className={styles.btnContainer}>
+              <button
+                className={`${styles.btn} ${styles.cancel}`}
+                onClick={() => {
+                  setIsOpenDelete(false);
+                }}
+              >
+                cancel
+              </button>
+              <button
+                className={`${styles.btn} ${styles.delete}`}
+                onClick={() => {
+                  if (taskToDelete) deleteSubTask(taskToDelete);
+                  setIsOpenDelete(false);
+                }}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </ConfirmModal>
+      )}
     </section>
   );
 }
