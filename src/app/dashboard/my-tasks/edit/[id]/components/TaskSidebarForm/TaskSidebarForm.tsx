@@ -25,10 +25,19 @@ const statusOptions = [
   },
 ];
 
+const priorityOptions = [
+  { id: "1", name: "Highest" },
+  { id: "2", name: "High" },
+  { id: "3", name: "Medium" },
+  { id: "4", name: "Low" },
+  { id: "5", name: "Lowest" },
+];
+
 export default function TaskSidebarForm() {
   const [formData, setFormData] = useState({
     listName: "",
     status: "",
+    priority: "",
   });
 
   return (
@@ -53,6 +62,16 @@ export default function TaskSidebarForm() {
           placeholder="Select status"
           value={formData.status}
           onChange={(val) => setFormData({ ...formData, status: val })}
+        />
+
+        {/* Priority */}
+        <SelectDropdown
+          id="priority"
+          label="Priority"
+          options={priorityOptions}
+          placeholder="Select priority"
+          value={formData.priority}
+          onChange={(val) => setFormData({ ...formData, priority: val })}
         />
       </div>
     </div>
