@@ -6,6 +6,10 @@ import styles from "./SelectDropdown.module.css";
 interface Option {
   id: string;
   name: string;
+
+  // ? color and bgcolor because status has background and color
+  color?: string;
+  bgColor?: string;
 }
 
 interface SelectDropdownProps {
@@ -22,7 +26,7 @@ export default function SelectDropdown({
   label,
   id,
   options,
-  placeholder = "Select...",
+  placeholder,
   hasSearch,
   value,
   onChange,
@@ -111,7 +115,18 @@ export default function SelectDropdown({
                     setSearchQuery("");
                   }}
                 >
-                  <span className={styles.item}>{list.name}</span>
+                  <span
+                    className={styles.item}
+                    style={{
+                      color: list.color,
+                      backgroundColor: list.bgColor || "transparent",
+                      padding: list.bgColor ? "5px" : "",
+                      borderRadius: list.bgColor ? "8px" : "0px",
+                      fontWeight: list.bgColor ? "600" : "normal",
+                    }}
+                  >
+                    {list.name}
+                  </span>
                   <span
                     className={`${styles.radioCircle} ${
                       value === list.name ? styles.selected : ""

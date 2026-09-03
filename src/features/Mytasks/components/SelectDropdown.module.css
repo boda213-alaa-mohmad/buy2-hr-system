@@ -1,5 +1,6 @@
 .fieldGroup {
   position: relative;
+  margin-bottom: 16px;
 }
 
 .fieldLabel {
@@ -36,11 +37,13 @@
 
 .listContainer {
   position: absolute;
+  z-index: 50;
   right: 0;
   left: 0;
-  border: 1px solid var(--border-color);
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
   border-radius: 16px;
-  margin-top: 20px;
+  margin-top: 10px;
   box-shadow: 0 5px 10px #0000001a;
 }
 
@@ -64,6 +67,7 @@
   max-height: 250px;
   margin-left: 16px;
   overflow-y: auto;
+  padding-bottom: 20px;
 }
 
 .listItem-radioCircle {
@@ -98,6 +102,7 @@
 .item {
   padding: 12px 16px;
   font-size: 17px;
+  margin-top: 10px;
 }
 
 .radioCircle {
