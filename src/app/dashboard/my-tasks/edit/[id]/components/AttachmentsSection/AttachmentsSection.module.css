@@ -1,0 +1,97 @@
+.container {
+  border-radius: 12px;
+  margin-top: 16px;
+  border: 1px solid var(--border-color);
+}
+
+.wrapper {
+  margin: 20px 20px 23px 20px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-color);
+  padding-bottom: 16px;
+}
+
+.btn {
+  background: #f2f1fe;
+  color: #756ef3;
+  display: flex;
+  align-items: center;
+  padding: 16px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+}
+
+.btn:hover {
+  background: #8b83d0;
+  color: #f9f9f9;
+}
+
+.btn :nth-child(2) {
+  font-size: 17px;
+}
+
+.fileBtn {
+  display: none;
+}
+
+.btn-fileLists {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.fileLists {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.file {
+  min-width: 280px;
+  padding: 9px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fileName {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.fileSize {
+  font-weight: 400;
+  color: var(--text-color);
+}
+
+.infoFiles {
+  display: flex;
+  flex-direction: column;
+}
+
+.containerIcons {
+  display: flex;
+  gap: 12px;
+}
+
+.containerIcons * {
+  cursor: pointer;
+}
+
+.trash {
+  color: #ff2f43;
+}
+
+.eye {
+  color: #3852a2;
+}

@@ -64,7 +64,7 @@ export default function TaskSidebarForm() {
           onChange={(val) => setFormData({ ...formData, status: val })}
         />
 
-        {/* Priority */}
+        {/*    */}
         <SelectDropdown
           id="priority"
           label="Priority"

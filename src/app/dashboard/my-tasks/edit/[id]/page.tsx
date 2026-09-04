@@ -3,6 +3,7 @@ import EditHeader from "./components/EditHeader/EditHeader";
 import SubtasksSection from "./components/SubtasksSection/SubtasksSection";
 import TaskSidebarForm from "./components/TaskSidebarForm/TaskSidebarForm";
 import TaskDescription from "./components/TaskDescription/TaskDescription";
+import Attachments from "./components/AttachmentsSection/AttachmentsSection";
 
 export default async function Page({
   params,
@@ -25,6 +26,7 @@ export default async function Page({
           </div>
 
           <TaskDescription />
+          <Attachments />
 
         </div>
       </div>
