@@ -1,7 +1,7 @@
 "use client";
 import ConfirmModal from "@/Components/shared/ConfirmModal/ConfirmModal";
 import styles from "./AttachmentsSection.module.css";
-import { Eye, Plus, Trash2 } from "lucide-react";
+import { CheckCircle2, Eye, Plus, Trash2, Loader2 } from "lucide-react";
 import { useState, useRef } from "react";
 
 interface FilesType {
@@ -14,7 +14,13 @@ export default function Attachments() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [files, setFiles] = useState<FilesType[]>([]);
   const [isOpenDelete, setIsOpenDelete] = useState<boolean>(false);
+  const [deleteStep, setDeleteStep] = useState<"confirm" | "success">(
+    "confirm",
+  );
   const [fileToDelete, setFileToDelete] = useState<string | null>(null);
+
+  // for loading delete
+  const [isLoadingDelete, setIsLoadingDelete] = useState<boolean>(false);
 
   // for uploading files
   function handleButtonClick() {
@@ -25,7 +31,6 @@ export default function Attachments() {
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const selectedFile = e.target.files;
 
-    // ! means if you don't choose file ---> go out from function
     if (!selectedFile) return;
 
     const rawFilesArray = Array.from(selectedFile);
@@ -44,6 +49,24 @@ export default function Attachments() {
   // function deleting files
   function handleDeleteFiles(id: string) {
     setFiles(files.filter((deleteFile) => deleteFile.id !== id));
+  }
+
+  function handleCloseModal() {
+    setFileToDelete(null);
+    setDeleteStep("confirm");
+    setIsLoadingDelete(false);
+  }
+
+  function handleConfirmDelete() {
+    if (!fileToDelete) return;
+
+    setIsLoadingDelete(true);
+
+    setTimeout(() => {
+      handleDeleteFiles(fileToDelete);
+      setIsLoadingDelete(false);
+      setDeleteStep("success");
+    }, 800);
   }
 
   return (
@@ -66,69 +89,92 @@ export default function Attachments() {
 
           {/* card container */}
           <div className={styles.fileLists}>
-            {files.map((file) => {
-              return (
-                // each card
-                <div key={file.id} className={styles.file}>
-                  {/* information files */}
-                  <div className={styles.infoFiles}>
-                    <p className={styles.fileName}>{file.name}</p>
-                    <p className={styles.fileSize}>{file.size}</p>
+            {files.length > 0 &&
+              files.map((file) => {
+                return (
+                  // each card
+                  <div key={file.id} className={styles.file}>
+                    {/* information files */}
+                    <div className={styles.infoFiles}>
+                      <p className={styles.fileName}>{file.name}</p>
+                      <p className={styles.fileSize}>{file.size}</p>
+                    </div>
+                    {/* icons */}
+                    <div className={styles.containerIcons}>
+                      <Eye size={20} className={styles.eye} />
+                      <Trash2
+                        size={20}
+                        className={styles.trash}
+                        onClick={() => {
+                          setFileToDelete(file.id);
+                          setIsOpenDelete(true);
+                        }}
+                      />
+                    </div>
                   </div>
-                  {/* icons */}
-                  <div className={styles.containerIcons}>
-                    <Eye size={20} className={styles.eye} />
-                    <Trash2
-                      size={20}
-                      className={styles.trash}
-                      onClick={() => {
-                        setFileToDelete(file.id);
-                        setIsOpenDelete(true);
-                      }}
-                    />
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
           </div>
 
           {/* confirm deleting */}
-          {isOpenDelete && (
+          {fileToDelete && (
             <ConfirmModal
-              icon={<Trash2 size={48} className={styles.trash} />}
-              variant="danger"
-              onClose={() => {
-                setIsOpenDelete(false);
-                setFileToDelete(null);
-              }}
+              icon={
+                deleteStep === "confirm" ? (
+                  <Trash2 size={48} className={styles.trash} />
+                ) : (
+                  <CheckCircle2 size={48} className={styles.correct} />
+                )
+              }
+              variant={deleteStep === "confirm" ? "danger" : "success"}
+              onClose={handleCloseModal}
             >
-              <div className={styles.containerMessageDeleting}>
-                <h2 className={styles.message}>Delete File?</h2>
-                <p className={styles.confirmMessage}>
-                  Are you sure you want to delete this file? This action is
-                  irreversible!
-                </p>
-                <div className={styles.btnContainer}>
-                  <button
-                    className={`${styles.btn} ${styles.cancel}`}
-                    onClick={() => {
-                      setIsOpenDelete(false);
-                    }}
-                  >
-                    cancel
-                  </button>
-                  <button
-                    className={`${styles.btn} ${styles.delete}`}
-                    onClick={() => {
-                      if (fileToDelete) handleDeleteFiles(fileToDelete);
-                      setIsOpenDelete(false);
-                      setFileToDelete(null);
-                    }}
-                  >
-                    Delete
-                  </button>
+              {deleteStep === "confirm" ? (
+                // ! confirm deleting file
+                <div className={styles.containerMessageDeleting}>
+                  <h2 className={styles.message}>Delete File?</h2>
+                  <p className={styles.confirmMessage}>
+                    Are you sure you want to delete this file? This action is
+                    irreversible!
+                  </p>
+                  <div className={styles.btnContainer}>
+                    <button
+                      className={`${styles.btn} ${styles.cancel}`}
+                      onClick={handleCloseModal}
+                      disabled={isLoadingDelete}
+                    >
+                      cancel
+                    </button>
+                    <button
+                      className={`${styles.btn} ${styles.delete}`}
+                      onClick={handleConfirmDelete}
+                      disabled={isLoadingDelete}
+                    >
+                      {isLoadingDelete ? (
+                        <Loader2 size={18} className="animate-spin" />
+                      ) : (
+                        "Delete"
+                      )}
+                    </button>
+                  </div>
                 </div>
-              </div>
+              ) : (
+                // ? success deleting file
+                <div className={styles.containerMessageDeleting}>
+                  <h2 className={styles.message}>Done!</h2>
+                  <p className={styles.confirmMessage}>
+                    File is deleted successfully.
+                  </p>
+                  <div className={styles.btnContainer}>
+                    <button
+                      className={`${styles.btn} ${styles.gotItBtn}`}
+                      onClick={handleCloseModal}
+                    >
+                      Got it
+                    </button>
+                  </div>
+                </div>
+              )}
             </ConfirmModal>
           )}
         </div>

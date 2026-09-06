@@ -92,6 +92,10 @@
   color: #ff2f43;
 }
 
+.correct {
+  color: #41ae0b;
+}
+
 .eye {
   color: #3852a2;
 }
@@ -150,4 +154,9 @@
 
 .delete:hover {
   background: rgb(179, 12, 12);
+}
+
+.gotItBtn {
+  background-color: #f0fdf4;
+  color: #108f3e;
 }
