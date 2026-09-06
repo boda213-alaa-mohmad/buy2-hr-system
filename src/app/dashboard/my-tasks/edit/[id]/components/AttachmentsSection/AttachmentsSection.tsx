@@ -1,4 +1,5 @@
 "use client";
+import ConfirmModal from "@/Components/shared/ConfirmModal/ConfirmModal";
 import styles from "./AttachmentsSection.module.css";
 import { Eye, Plus, Trash2 } from "lucide-react";
 import { useState, useRef } from "react";
@@ -12,6 +13,8 @@ interface FilesType {
 export default function Attachments() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [files, setFiles] = useState<FilesType[]>([]);
+  const [isOpenDelete, setIsOpenDelete] = useState<boolean>(false);
+  const [fileToDelete, setFileToDelete] = useState<string | null>(null);
 
   // for uploading files
   function handleButtonClick() {
@@ -56,7 +59,7 @@ export default function Attachments() {
 
         {/* button with files */}
         <div className={styles["btn-fileLists"]}>
-          <button className={styles.btn} onClick={handleButtonClick}>
+          <button className={styles.btnPlus} onClick={handleButtonClick}>
             <Plus size={25} strokeWidth={1.5} />
             <span>Upload more items</span>
           </button>
@@ -78,13 +81,56 @@ export default function Attachments() {
                     <Trash2
                       size={20}
                       className={styles.trash}
-                      onClick={() => handleDeleteFiles(file.id)}
+                      onClick={() => {
+                        setFileToDelete(file.id);
+                        setIsOpenDelete(true);
+                      }}
                     />
                   </div>
                 </div>
               );
             })}
           </div>
+
+          {/* confirm deleting */}
+          {isOpenDelete && (
+            <ConfirmModal
+              icon={<Trash2 size={48} className={styles.trash} />}
+              variant="danger"
+              onClose={() => {
+                setIsOpenDelete(false);
+                setFileToDelete(null);
+              }}
+            >
+              <div className={styles.containerMessageDeleting}>
+                <h2 className={styles.message}>Delete File?</h2>
+                <p className={styles.confirmMessage}>
+                  Are you sure you want to delete this file? This action is
+                  irreversible!
+                </p>
+                <div className={styles.btnContainer}>
+                  <button
+                    className={`${styles.btn} ${styles.cancel}`}
+                    onClick={() => {
+                      setIsOpenDelete(false);
+                    }}
+                  >
+                    cancel
+                  </button>
+                  <button
+                    className={`${styles.btn} ${styles.delete}`}
+                    onClick={() => {
+                      if (fileToDelete) handleDeleteFiles(fileToDelete);
+                      setIsOpenDelete(false);
+                      setFileToDelete(null);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </ConfirmModal>
+          )}
         </div>
       </div>
     </div>

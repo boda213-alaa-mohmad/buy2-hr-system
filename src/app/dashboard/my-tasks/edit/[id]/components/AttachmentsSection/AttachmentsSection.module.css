@@ -15,7 +15,7 @@
   padding-bottom: 16px;
 }
 
-.btn {
+.btnPlus {
   background: #f2f1fe;
   color: #756ef3;
   display: flex;
@@ -28,12 +28,12 @@
     color 0.2s;
 }
 
-.btn:hover {
+.btnPlus:hover {
   background: #8b83d0;
   color: #f9f9f9;
 }
 
-.btn :nth-child(2) {
+.btnPlus :nth-child(2) {
   font-size: 17px;
 }
 
@@ -94,4 +94,60 @@
 
 .eye {
   color: #3852a2;
+}
+
+.containerMessageDeleting {
+  margin-top: 24px;
+}
+
+.message {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.confirmMessage {
+  width: 290px;
+  color: var(--text-color);
+  font-size: 17px;
+  text-align: center;
+  margin: 16px auto 40px auto;
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.btn {
+  width: 190px;
+  padding: 16px 0;
+  text-align: center;
+  border-radius: 16px;
+  font-size: 20px;
+  font-weight: 600;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
+  cursor: pointer;
+}
+
+.cancel {
+  border: 1px solid rgb(5, 46, 181);
+  color: #234199;
+}
+
+.cancel:hover {
+  background: #234199;
+  color: #ffffff;
+}
+
+.delete {
+  background: var(--color-red-600);
+  color: #ffffff;
+}
+
+.delete:hover {
+  background: rgb(179, 12, 12);
 }
