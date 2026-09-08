@@ -10,3 +10,16 @@ export interface Task {
   };
   status?: "default" | "editing" | "overdue";
 }
+
+export type SettingsTab =
+  | "password"
+  | "language"
+  | "about"
+  | "terms"
+  | "privacy";
+
+// export interface PasswordRequirement {
+//   id: string;
+//   label: string;
+//   isValid: boolean;
+// }
