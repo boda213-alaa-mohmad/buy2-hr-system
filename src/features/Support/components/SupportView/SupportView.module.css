@@ -1,0 +1,48 @@
+.container {
+  width: 100%;
+  padding: 24px;
+  background-color: #ffffff;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.tabsContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tabBtn {
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 9999px;
+  border: 1px solid transparent;
+  background-color: transparent;
+  color: #111827;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tabBtn.active {
+  color: #6366f1;
+  border-color: #9792F6;
+  background-color: #ffffff;
+}
+
+.tabBtn:hover:not(.active) {
+  color: #4b5563;
+}
