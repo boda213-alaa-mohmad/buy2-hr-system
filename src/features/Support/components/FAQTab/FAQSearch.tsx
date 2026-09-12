@@ -1,14 +1,15 @@
-  import { Search } from "lucide-react";
-  import styles from "./FAQSearch.module.css";
+import { Search } from "lucide-react";
+import styles from "./FAQSearch.module.css";
 
-  interface InputType {
-    input: string;
-    onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    ref?: React.RefObject<HTMLInputElement | null>;
-  }
+interface InputType {
+  input: string;
+  onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  ref?: React.RefObject<HTMLInputElement | null>;
+}
 
-  export default function FAQSearch({ input, onChangeInput, ref }: InputType) {
-    return (
+export default function FAQSearch({ input, onChangeInput, ref }: InputType) {
+  return (
+    <div className={styles.container}>
       <div className={styles.searchWrapper}>
         <Search className={styles.searchIcon} aria-hidden="true" size={18} />
         <input
@@ -21,5 +22,6 @@
           ref={ref}
         />
       </div>
-    );
-  }
+    </div>
+  );
+}

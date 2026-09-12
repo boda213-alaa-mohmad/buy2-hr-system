@@ -5,6 +5,8 @@ import { ChooseType } from "@/features/Support/types/support";
 import FAQSearch from "@/features/Support/components/FAQTab/FAQSearch";
 import FAQCategoryCard from "@/features/Support/components/FAQTab/FAQCategoryCard";
 import FAQAccordion from "@/features/Support/components/FAQTab/FAQAccordion";
+import ReportHeader from "@/features/Support/components/ReportIssueTab/ReportHeader";
+import ReportIssueTab from "@/features/Support/components/ReportIssueTab/ReportIssueTab";
 
 export default function Support() {
   const [choose, setChoose] = useState<ChooseType>("FAQ");
@@ -16,11 +18,7 @@ export default function Support() {
   }, []);
 
   return (
-    <div
-      style={{
-        paddingBottom: "24px",
-      }}
-    >
+    <div>
       <SupportView choose={choose} onTabChange={setChoose} />
       {choose === "FAQ" ? (
         <>
@@ -32,10 +30,13 @@ export default function Support() {
             ref={inputRef}
           />
           <FAQCategoryCard />
-          <FAQAccordion value={inputField}/>
+          <FAQAccordion value={inputField} />
         </>
       ) : (
-        <div></div>
+        <div>
+          <ReportHeader />
+          <ReportIssueTab />
+        </div>
       )}
     </div>
   );
