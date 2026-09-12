@@ -1,9 +1,42 @@
+"use client";
+import { useState, useEffect, useRef } from "react";
 import SupportView from "@/features/Support/components/SupportView/SupportView";
+import { ChooseType } from "@/features/Support/types/support";
+import FAQSearch from "@/features/Support/components/FAQTab/FAQSearch";
+import FAQCategoryCard from "@/features/Support/components/FAQTab/FAQCategoryCard";
+import FAQAccordion from "@/features/Support/components/FAQTab/FAQAccordion";
 
 export default function Support() {
+  const [choose, setChoose] = useState<ChooseType>("FAQ");
+  const [inputField, setInputField] = useState<string>("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, []);
+
   return (
-    <div>
-      <SupportView />
+    <div
+      style={{
+        paddingBottom: "24px",
+      }}
+    >
+      <SupportView choose={choose} onTabChange={setChoose} />
+      {choose === "FAQ" ? (
+        <>
+          <FAQSearch
+            input={inputField}
+            onChangeInput={(e) => {
+              setInputField(e.target.value);
+            }}
+            ref={inputRef}
+          />
+          <FAQCategoryCard />
+          <FAQAccordion value={inputField}/>
+        </>
+      ) : (
+        <div></div>
+      )}
     </div>
-  )
+  );
 }

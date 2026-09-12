@@ -1,11 +1,8 @@
 "use client";
 import styles from "./SupportView.module.css";
-import { useState } from "react";
-import { ChooseType } from "../../types/support";
+import { SupportViewProps } from "../../types/support";
 
-export default function SupportView() {
-  const [choose, setChoose] = useState<ChooseType>("FAQ");
-
+export default function SupportView({ choose, onTabChange }: SupportViewProps) {
   return (
     <div className={styles.container}>
       <header className={styles.header}>
@@ -23,7 +20,7 @@ export default function SupportView() {
             id="faq-tab"
             tabIndex={choose === "FAQ" ? 0 : -1}
             className={`${styles.tabBtn} ${choose === "FAQ" ? styles.active : ""}`}
-            onClick={() => setChoose("FAQ")}
+            onClick={() => onTabChange("FAQ")}
           >
             Frequently asked questions
           </button>
@@ -35,7 +32,7 @@ export default function SupportView() {
             id="report-tab"
             tabIndex={choose === "Report issue" ? 0 : -1}
             className={`${styles.tabBtn} ${choose === "Report issue" ? styles.active : ""}`}
-            onClick={() => setChoose("Report issue")}
+            onClick={() => onTabChange("Report issue")}
           >
             Report Issue
           </button>
