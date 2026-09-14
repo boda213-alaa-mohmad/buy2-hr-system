@@ -7,10 +7,12 @@ import FAQCategoryCard from "@/features/Support/components/FAQTab/FAQCategoryCar
 import FAQAccordion from "@/features/Support/components/FAQTab/FAQAccordion";
 import ReportHeader from "@/features/Support/components/ReportIssueTab/ReportHeader";
 import ReportIssueTab from "@/features/Support/components/ReportIssueTab/ReportIssueTab";
+import ModalDetail from "@/features/Support/components/ModalDetail/ModalDetail";
 
 export default function Support() {
   const [choose, setChoose] = useState<ChooseType>("FAQ");
   const [inputField, setInputField] = useState<string>("");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -35,7 +37,12 @@ export default function Support() {
       ) : (
         <div>
           <ReportHeader />
-          <ReportIssueTab />
+          <ReportIssueTab
+            onTicketClick={() => {
+              setIsOpen(true);
+            }}
+          />
+          {isOpen && <ModalDetail onClose={() => {setIsOpen(false)}}/>}
         </div>
       )}
     </div>

@@ -7,6 +7,7 @@ interface TicketCardProps {
   ticketNumber: string;
   status: "Open" | "In progress" | "Solved";
   date: string;
+  onClick: () => void;
 }
 
 export default function TicketCard({
@@ -14,6 +15,7 @@ export default function TicketCard({
   ticketNumber,
   status,
   date,
+  onClick,
 }: TicketCardProps) {
   const getStatusClass = (status: string) => {
     switch (status) {
@@ -29,7 +31,7 @@ export default function TicketCard({
   };
 
   return (
-    <div className={styles.card}>
+    <div className={styles.card} onClick={onClick}>
       <div className={styles.cardHeader}>
         <div className={styles.iconWrapper}>
           <Ticket size={20} />

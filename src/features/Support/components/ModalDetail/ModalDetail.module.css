@@ -1,0 +1,179 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.container {
+  height: 95vh;
+  width: 550px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: #fff;
+
+  border-radius: 24px;
+  margin: 24px 24px 0 24px;
+  animation: slideIn 0.3s ease-out;
+}
+
+.wrapper {
+  margin: 32px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.header :nth-child(1) {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.header :nth-child(2) {
+  cursor: pointer;
+}
+
+.content-ticket-card {
+  padding: 24px;
+  border-radius: 16px;
+  border: 1px solid #e7e7e7;
+}
+
+.ticketContent {
+  margin-bottom: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ticketContent :nth-child(1) {
+  color: var(--text-color);
+}
+
+.ticketContent :nth-child(2) {
+  color: #202020;
+}
+
+.comments {
+  margin-top: 24px;
+}
+
+.commentHeader {
+  font-weight: 600;
+  font-size: 23px;
+  margin-bottom: 16px;
+}
+
+.commentCard {
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid #e7e7e7;
+  margin-bottom: 16px;
+}
+
+.commentContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.commentContent :nth-child(1) {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.commentContent :nth-child(2) {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.commentDesc {
+  color: var(--text-color);
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.commentInput {
+  width: 100%;
+  padding: 14px 48px 14px 20px;
+  background-color: #f8f9fa;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  font-size: 14px;
+  color: #1f2937;
+  outline: none;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: auto;
+  padding-top: 16px;
+}
+
+.commentInput {
+  width: 100%;
+  padding: 14px 48px 14px 20px;
+  background-color: #f8f9fa;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  font-size: 14px;
+  color: #1f2937;
+  outline: none;
+}
+
+.commentInput::placeholder {
+  color: #9ca3af;
+}
+
+.sendBtn {
+  position: absolute;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: #23429b;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}

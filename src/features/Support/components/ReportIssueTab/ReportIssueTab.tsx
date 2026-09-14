@@ -87,12 +87,13 @@ export const MOCK_TICKETS = [
     date: "Mar 23, 2022",
   },
 ];
-export default function ReportIssueTab() {
+export default function ReportIssueTab({ onTicketClick }: { onTicketClick: () => void }) {
   return (
     <div className={styles.container}>
       <div className={styles.ticketsGrid}>
         {MOCK_TICKETS.map((ticket) => (
           <TicketCard
+            onClick={onTicketClick}
             key={ticket.id}
             id={ticket.id}
             title={ticket.title}
