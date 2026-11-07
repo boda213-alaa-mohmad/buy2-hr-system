@@ -1,14 +1,6 @@
 import { Ticket } from "lucide-react";
 import styles from "./TicketCard.module.css";
-
-interface TicketCardProps {
-  id: string;
-  title: string;
-  ticketNumber: string;
-  status: "Open" | "In progress" | "Solved";
-  date: string;
-  onClick: () => void;
-}
+import { TicketCardProps } from "../../types/support";
 
 export default function TicketCard({
   title,

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Search, SlidersHorizontal, Plus } from "lucide-react";
 import styles from "./ReportHeader.module.css";
 
@@ -22,10 +23,12 @@ export default function ReportHeader() {
             <span>Filter</span>
           </button>
 
-          <button type="button" className={styles.addButton}>
-            <Plus size={18} aria-hidden="true" />
-            <span>Add ticket</span>
-          </button>
+          <Link href={`/dashboard/support/new-ticket`}>
+            <button type="button" className={styles.addButton}>
+              <Plus size={18} aria-hidden="true" />
+              <span>Add ticket</span>
+            </button>
+          </Link>
         </div>
       </div>
 
