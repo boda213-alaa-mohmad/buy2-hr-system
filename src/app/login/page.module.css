@@ -1,0 +1,9 @@
+.loginMain {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #ffffff;
+  padding: 1.5rem;
+  gap: 2rem;
+  box-sizing: border-box;
+}
