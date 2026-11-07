@@ -1,0 +1,314 @@
+.cardContainer {
+  flex: 1;
+  background: linear-gradient(135deg, #1d3557 0%, #1d4ed8 100%);
+  border-radius: 1.5rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  isolation: isolate;
+}
+
+/* Background glow */
+
+.cardContainer::before {
+  content: "";
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 50%;
+  background: rgba(147, 197, 253, 0.15);
+  filter: blur(80px);
+  top: -100px;
+  right: -100px;
+  z-index: -1;
+  animation: glowMove 8s ease-in-out infinite alternate;
+}
+
+.cardContainer::after {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(196, 181, 253, 0.12);
+  filter: blur(80px);
+  bottom: -100px;
+  left: -100px;
+  z-index: -1;
+  animation: glowMove 10s ease-in-out infinite alternate-reverse;
+}
+
+.innerBorder {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 1rem;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 1;
+}
+
+/* Graphic Area */
+
+.graphicArea {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  min-height: 280px;
+}
+
+/* Person Circle */
+
+.personCircle {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c4b5fd, #93c5fd);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  box-shadow:
+    0 0 30px rgba(147, 197, 253, 0.25),
+    0 0 70px rgba(147, 197, 253, 0.12);
+  animation: circleFloat 5s ease-in-out infinite;
+}
+
+/* Image Animation */
+
+.personCircle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: imageSlide 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes imageSlide {
+  from {
+    opacity: 0;
+    transform: translateX(70px) scale(0.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+/* Floating Cards */
+
+.floatingCard1,
+.floatingCard2 {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.floatingCard1 {
+  top: 10%;
+  left: 5%;
+  width: 140px;
+  animation: floatingLeft 4s ease-in-out infinite;
+}
+
+.floatingCard2 {
+  bottom: 20%;
+  right: 5%;
+  width: 150px;
+  animation: floatingRight 5s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.floatingCard1:hover,
+.floatingCard2:hover {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Skeleton */
+
+.skeletonLine {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 3px;
+  margin-bottom: 6px;
+  animation: skeletonPulse 2s ease-in-out infinite;
+}
+
+.skeletonLine:nth-child(2) {
+  width: 80%;
+  animation-delay: 0.2s;
+}
+
+.skeletonLine:nth-child(3) {
+  width: 60%;
+  animation-delay: 0.4s;
+}
+
+/* Text Area */
+
+.textArea {
+  margin-top: auto;
+}
+
+.textArea h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+  animation: textEnter 0.6s ease both;
+}
+
+.textArea p {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+  max-width: 90%;
+  animation: textEnter 0.8s ease both;
+  animation-delay: 0.1s;
+}
+
+/* Pagination */
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.dot,
+.activeDot {
+  height: 8px;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition:
+    width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.4s ease,
+    opacity 0.4s ease;
+}
+
+.dot {
+  width: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.activeDot {
+  width: 24px;
+  border-radius: 4px;
+  background-color: white;
+}
+
+@keyframes circleFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes floatingLeft {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-3deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+}
+
+@keyframes floatingRight {
+  0%,
+  100% {
+    transform: translateY(0) rotate(3deg);
+  }
+
+  50% {
+    transform: translateY(12px) rotate(-2deg);
+  }
+}
+
+@keyframes glowMove {
+  from {
+    transform: translate(0, 0);
+  }
+
+  to {
+    transform: translate(-40px, 40px);
+  }
+}
+
+@keyframes skeletonPulse {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes textEnter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+
+@media (max-width: 900px) {
+  .cardContainer {
+    display: none;
+  }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+  .cardContainer::before,
+  .cardContainer::after,
+  .personCircle,
+  .personCircle img,
+  .floatingCard1,
+  .floatingCard2,
+  .skeletonLine,
+  .textArea h2,
+  .textArea p {
+    animation: none !important;
+  }
+
+  .dot,
+  .activeDot {
+    transition: none;
+  }
+}

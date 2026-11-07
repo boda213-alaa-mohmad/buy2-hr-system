@@ -19,6 +19,7 @@ import {
   CircleHelp,
   LogOut,
 } from "lucide-react";
+import { logout } from "@/actions/logoutAction";
 
 export type SidebarItem = {
   title: string;
@@ -102,10 +103,12 @@ export default function SideBar() {
         );
       })}
 
-      <button className={styles.logout}>
-        <LogOut size={20} />
-        <span>Logout</span>
-      </button>
+      <form action={logout} className={styles.logoutForm}>
+        <button type="submit" className={styles.logout}>
+          <LogOut size={20} />
+          <span>Logout</span>
+        </button>
+      </form>
     </div>
   );
 }
