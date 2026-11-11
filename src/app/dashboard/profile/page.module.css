@@ -1,0 +1,22 @@
+.profileContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.rowSection {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+}
+
+.rowSection > * {
+  flex: 1;
+}
+
+@media (max-width: 1200px) {
+  .rowSection {
+    flex-direction: column;
+  }
+}

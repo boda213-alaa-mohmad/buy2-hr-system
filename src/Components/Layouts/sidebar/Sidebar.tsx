@@ -77,7 +77,6 @@ const sidebarItems: SidebarItem[] = [
 
 export default function SideBar() {
   const pathname = usePathname();
-  console.log(pathname);
   return (
     <div className={styles.container}>
       <Link href="/">

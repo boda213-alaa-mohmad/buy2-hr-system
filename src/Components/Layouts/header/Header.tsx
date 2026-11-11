@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./Header.module.css";
 import { Search, Bell, UserRound } from "lucide-react";
 
@@ -17,13 +18,16 @@ export default function Header() {
           <div className={styles.bell}>
             <Bell size={35} />
           </div>
-          <div className={styles.userRound}>
-            <UserRound size={35} />
-          </div>
-          <div className={styles.userinfo}>
-            <div>Mohmed Ahmed</div>
-            <div>flutter developer</div>
-          </div>
+
+          <Link href="/dashboard/profile" className={styles.profileLink}>
+            <div className={styles.userRound}>
+              <UserRound size={35} />
+            </div>
+            <div className={styles.userinfo}>
+              <div>Mohmed Ahmed</div>
+              <div>flutter developer</div>
+            </div>
+          </Link>
         </div>
       </div>
     </header>

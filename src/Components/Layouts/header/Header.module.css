@@ -1,5 +1,4 @@
 .header {
-  /* width: 85%; */
   margin-top: 24px;
   margin-bottom: 16px;
 }
@@ -7,6 +6,7 @@
 .searchContainer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .searchBar {
@@ -29,6 +29,9 @@
   padding: 8px 16px;
   outline: none;
   font-size: 20px;
+  border: none;
+  background: transparent;
+  width: 100%;
 }
 
 .input::placeholder {
@@ -47,6 +50,14 @@
   background: #ffffff;
   border-radius: 12px;
   padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.bell {
+  color: #333;
 }
 
 .userRound {
@@ -54,15 +65,53 @@
 }
 
 .userRound :nth-child(1) {
-  color: #b4dbff;
+  color: #2b569a;
+}
+
+.profileLink {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
 }
 
 .userinfo :nth-child(1) {
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
+  color: #1a1a1a;
 }
 
 .userinfo :nth-child(2) {
-  font-size: 18px;
-  color: var(--text-color);
+  font-size: 14px;
+  color: var(--text-color, #64748b);
 }
+
+
+
+  .header {
+    margin-top: 24px;
+    margin-bottom: 16px;
+  }
+
+  .searchContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .searchBar {
+    width: 350px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #ffffff;
+    border: 1px solid #f1f5f9;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+  }

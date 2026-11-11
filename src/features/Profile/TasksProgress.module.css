@@ -1,0 +1,127 @@
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 4px 0;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #94a3b8;
+  margin: 0;
+}
+
+.viewAllBtn {
+  background: none;
+  border: none;
+  color: #2b569a;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+
+.viewAllBtn:hover {
+  text-decoration: underline;
+}
+
+.circlesContainer {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  align-items: center;
+}
+
+.taskItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.circularProgress {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.myDay {
+  --progress-color: #2b569a; 
+}
+
+.completed {
+  --progress-color: #16a34a; 
+}
+
+.todo {
+  --progress-color: #dc2626;
+}
+
+.inProgress {
+  --progress-color: #f97316;
+}
+
+.innerCircle {
+  width: 72px;
+  height: 72px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.percentageText {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.taskFooter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.taskLabel {
+  font-size: 14px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.taskCount {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+@media (max-width: 768px) {
+  .circlesContainer {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+  }
+  .taskItem {
+    min-width: 40%;
+  }
+}
