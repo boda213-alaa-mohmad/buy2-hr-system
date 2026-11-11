@@ -2,8 +2,11 @@
 import Link from "next/link";
 import { ChevronLeft, User, Award } from "lucide-react";
 import styles from "./ProfileHeader.module.css";
+import { useState } from "react";
+import FullInfo from "./Full-info";
 
 export default function ProfileHeader() {
+  const [open, setOpen] = useState<boolean>(false); // ? this is for full-info card
   return (
     <div className={styles.wrapper}>
       <div className={styles.topBar}>
@@ -23,7 +26,14 @@ export default function ProfileHeader() {
           <div className={styles.infoGrid}>
             <div className={styles.nameRow}>
               <h2 className={styles.name}>Saif Ahmed</h2>
-              <span className={styles.fullInfo}>Full Info</span>
+              <span
+                onClick={() => {
+                  setOpen(true);
+                }}
+                className={styles.fullInfo}
+              >
+                Full Info
+              </span>
             </div>
 
             <div className={styles.detailsRow}>
@@ -52,6 +62,13 @@ export default function ProfileHeader() {
           </div>
         </div>
       </div>
+      {open && (
+        <FullInfo
+          onClose={() => {
+            setOpen(false);
+          }}
+        />
+      )}
     </div>
   );
 }

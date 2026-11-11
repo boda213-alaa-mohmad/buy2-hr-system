@@ -77,6 +77,7 @@ const sidebarItems: SidebarItem[] = [
 
 export default function SideBar() {
   const pathname = usePathname();
+
   return (
     <div className={styles.container}>
       <Link href="/">
@@ -91,8 +92,8 @@ export default function SideBar() {
       {sidebarItems.map(function (side, index) {
         const isActive =
           side.href === "/dashboard"
-            ? pathname === "/dashboard"
-            : pathname.startsWith(side.href);
+            ? pathname === "/dashboard" || pathname === "/dashboard/profile"
+            : pathname === side.href || pathname.startsWith(`${side.href}/`);
         return (
           <Link href={side.href} key={index}>
             <div
