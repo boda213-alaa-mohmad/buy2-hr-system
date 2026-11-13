@@ -66,6 +66,10 @@
   justify-content: center;
 }
 
+.hasImage {
+  background-color: transparent;
+}
+
 .avatarIcon {
   color: #72b3f2;
 }
@@ -173,3 +177,5 @@
     opacity: 1;
   }
 }
+
+

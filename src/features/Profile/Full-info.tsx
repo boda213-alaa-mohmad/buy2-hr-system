@@ -1,3 +1,4 @@
+"use client";
 import styles from "./Full-info.module.css";
 import {
   X,
@@ -11,7 +12,58 @@ import {
   Pencil,
 } from "lucide-react";
 
+import { useState, useEffect, useRef } from "react";
+import Image from "next/image";
+
 export default function FullInfo({ onClose }: { onClose: () => void }) {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+  const [image, setImage] = useState<string | null>(null);
+
+  // ? file reader ===> read the content of file
+  // file ---> object name, size, ..... by <input type="file" />
+  // fileList more that on file
+   // fileList ===> return more than on file <input type="file" multiple />
+
+useEffect(() => {
+  try {
+    const savedImage = localStorage.getItem("profile-image");
+
+    if (savedImage) {
+      setImage(savedImage);
+    }
+  } catch (error) {
+    console.error("Error loading image:", error);
+  }
+}, []);
+
+useEffect(() => {
+  if (image === null) return;
+
+  try {
+    localStorage.setItem("profile-image", image);
+  } catch (error) {
+    console.error("Error saving image:", error);
+  }
+}, [image]);
+
+  function handleChange() {
+    inputRef.current?.click();
+  }
+
+  function handleFileSelect(e: React.ChangeEvent<HTMLInputElement>) {
+    const fileChosen = e.target.files?.[0];
+
+    if (!fileChosen) return;
+
+    // reading file
+    const fileReader = new FileReader();
+
+    fileReader.onload = () => {
+      if (typeof fileReader.result === "string") setImage(fileReader.result);
+    };
+
+    fileReader.readAsDataURL(fileChosen);
+  }
   return (
     <div className={styles.container} onClick={onClose}>
       <div
@@ -27,9 +79,23 @@ export default function FullInfo({ onClose }: { onClose: () => void }) {
 
           {/* profile */}
           <div className={styles.profileCard}>
-            <div className={styles.avatarContainer}>
-              <User size={45} className={styles.avatarIcon} />
-              <div className={styles.editBadge}>
+            <div
+              className={`${styles.avatarContainer} ${
+                image ? styles.hasImage : ""
+              }`}
+            >
+              {image ? (
+                <Image src={image} alt="user icon" width={45} height={45} />
+              ) : (
+                <User size={45} className={styles.avatarIcon} />
+              )}
+              <input
+                type="file"
+                hidden
+                ref={inputRef}
+                onChange={handleFileSelect}
+              />
+              <div className={styles.editBadge} onClick={handleChange}>
                 <Pencil size={12} className={styles.editIcon} />
               </div>
             </div>
