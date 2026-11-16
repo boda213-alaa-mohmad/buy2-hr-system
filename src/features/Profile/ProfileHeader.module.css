@@ -58,8 +58,23 @@
   flex-shrink: 0;
 }
 
+.avatarContainer {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  background-color: #ebf3ff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .avatarIcon {
   color: #2b569a;
+}
+
+.hasImage {
+  background-color: transparent;
 }
 
 .infoGrid {

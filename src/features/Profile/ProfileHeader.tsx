@@ -2,11 +2,16 @@
 import Link from "next/link";
 import { ChevronLeft, User, Award } from "lucide-react";
 import styles from "./ProfileHeader.module.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import FullInfo from "./Full-info";
+import Image from "next/image";
+import { profileImageProvider } from "@/context/profileProvider";
 
 export default function ProfileHeader() {
-  const [open, setOpen] = useState<boolean>(false); // ? this is for full-info card
+  const [open, setOpen] = useState<boolean>(false);
+
+  const imageProfile = useContext(profileImageProvider);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.topBar}>
@@ -19,8 +24,21 @@ export default function ProfileHeader() {
 
       <div className={styles.card}>
         <div className={styles.leftSection}>
-          <div className={styles.avatarWrapper}>
-            <User size={40} className={styles.avatarIcon} />
+          <div
+            className={`${styles.avatarWrapper} ${
+              imageProfile.image ? styles.hasImage : ""
+            }`}
+          >
+            {imageProfile.image ? (
+              <Image
+                src={imageProfile.image}
+                alt="profile avatar"
+                width={40}
+                height={40}
+              />
+            ) : (
+              <User size={40} className={styles.avatarIcon} />
+            )}
           </div>
 
           <div className={styles.infoGrid}>
