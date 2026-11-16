@@ -13,6 +13,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "flagcdn.com",
       },
+      {
+        protocol: "https",
+        hostname: "randomuser.me",
+        pathname: "/api/portraits/**",
+      },
     ],
   },
 };

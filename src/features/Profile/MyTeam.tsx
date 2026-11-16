@@ -1,14 +1,8 @@
-import { User } from "lucide-react";
+"use client";
+import Image from "next/image";
 import styles from "./MyTeam.module.css";
-
-const teamMembers = [
-  { id: 1, name: "Saif Ahmed", role: "React developer", score: 88 },
-  { id: 2, name: "Sayed Essam", role: "Flutter developer", score: 88 },
-  { id: 3, name: "Hala Ahmed", role: "UI/UX Designer", score: 88 },
-  { id: 4, name: "Mohamed Ali", role: "Backend developer", score: 90 },
-  { id: 5, name: "Saif Ahmed", role: "React developer", score: 88 },
-  { id: 6, name: "Sayed Essam", role: "Flutter developer", score: 88 },
-];
+import Link from "next/link";
+import { teamMembers } from "@/data/teamMembers";
 
 export default function MyTeam() {
   return (
@@ -20,16 +14,23 @@ export default function MyTeam() {
             Here you can see all the members at your team.
           </p>
         </div>
-        <button className={styles.viewAllBtn}>View all</button>
+        <Link href="/dashboard/profile/my-team">
+          <button className={styles.viewAllBtn}>View all</button>
+        </Link>
       </div>
 
       <div className={styles.carouselContainer}>
         <div className={styles.membersGrid}>
-          {teamMembers.map((member) => (
+          {teamMembers.slice(0, 6).map((member) => (
             <div key={member.id} className={styles.memberCard}>
               <div className={styles.memberInfoWrapper}>
                 <div className={styles.avatarWrapper}>
-                  <User size={28} className={styles.avatarIcon} />
+                  <Image
+                    src={member.image}
+                    alt="image user"
+                    width={45}
+                    height={45}
+                  />
                 </div>
                 <div className={styles.textContainer}>
                   <h4 className={styles.memberName}>{member.name}</h4>
