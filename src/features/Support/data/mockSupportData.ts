@@ -1,0 +1,88 @@
+import { TicketCardProps } from "../types/support";
+
+export const MOCK_TICKETS: TicketCardProps[] = [
+  {
+    id: "1",
+    title: "How can I uninstall this?",
+    ticketNumber: "334533",
+    status: "Open",
+    date: "Mar 23, 2022",
+  },
+  {
+    id: "2",
+    title: "Why is my account suspended?",
+    ticketNumber: "334589",
+    status: "Solved",
+    date: "Mar 23, 2022",
+  },
+  {
+    id: "3",
+    title: "How do I reset passwords?",
+    ticketNumber: "334612",
+    status: "In progress",
+    date: "Mar 23, 2022",
+  },
+  {
+    id: "4",
+    title: "Where can I update billing?",
+    ticketNumber: "334670",
+    status: "Open",
+    date: "Mar 23, 2022",
+  },
+  {
+    id: "5",
+    title: "Why isn't my app working?",
+    ticketNumber: "334715",
+    status: "Solved",
+    date: "Mar 23, 2022",
+  },
+  {
+    id: "6",
+    title: "How can I contact support?",
+    ticketNumber: "334780",
+    status: "In progress",
+    date: "Mar 23, 2022",
+  },
+  {
+    id: "7",
+    title: "Can I change subscription plan?",
+    ticketNumber: "334821",
+    status: "Open",
+    date: "Mar 23, 2022",
+  },
+  {
+    id: "8",
+    title: "How do I delete accounts?",
+    ticketNumber: "334899",
+    status: "Solved",
+    date: "Mar 23, 2022",
+  },
+  {
+    id: "9",
+    title: "Why haven't I received ?",
+    ticketNumber: "334942",
+    status: "In progress",
+    date: "Mar 23, 2022",
+  },
+  {
+    id: "10",
+    title: "How can I track orders?",
+    ticketNumber: "335011",
+    status: "Solved",
+    date: "Mar 23, 2022",
+  },
+  {
+    id: "11",
+    title: "What methods accepted?",
+    ticketNumber: "335084",
+    status: "In progress",
+    date: "Mar 23, 2022",
+  },
+  {
+    id: "12",
+    title: "How do I enable notifications?",
+    ticketNumber: "335120",
+    status: "Solved",
+    date: "Mar 23, 2022",
+  },
+];

@@ -12,7 +12,9 @@ import { TicketCardProps } from "@/features/Support/types/support";
 
 export default function Support() {
   const [choose, setChoose] = useState<ChooseType>("FAQ");
+  const [isInitialized, setIsInitialized] = useState(false);
   const [inputField, setInputField] = useState<string>("");
+  const [inputFieldReport, setInputFieldReport] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedTicket, setSelectedTicket] = useState<TicketCardProps | null>(
     null,
@@ -23,38 +25,58 @@ export default function Support() {
     inputRef.current?.focus();
   }, []);
 
+  useEffect(() => {
+    const chooseSupport = localStorage.getItem("chosen-support");
+    if (chooseSupport === "FAQ" || chooseSupport === "Report issue")
+      setChoose(chooseSupport);
+
+    setIsInitialized(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isInitialized) return;
+    localStorage.setItem("chosen-support", choose);
+  }, [choose, isInitialized]);
+
   return (
-    <div>
-      <SupportView choose={choose} onTabChange={setChoose} />
-      {choose === "FAQ" ? (
-        <>
-          <FAQSearch
-            input={inputField}
-            onChangeInput={(e) => {
-              setInputField(e.target.value);
-            }}
-            ref={inputRef}
-          />
-          <FAQCategoryCard />
-          <FAQAccordion value={inputField} />
-        </>
-      ) : (
-        <div>
-          <ReportHeader />
-          <ReportIssueTab
-            onTicketClick={(ticket: TicketCardProps) => {
-              setSelectedTicket(ticket);
-            }}
-          />
-          {isOpen && (
-            <ModalDetail
-              onClose={() => {
-                setIsOpen(false);
+    <>
+      <div>
+        <SupportView choose={choose} onTabChange={setChoose} />
+        {choose === "FAQ" ? (
+          <>
+            <FAQSearch
+              input={inputField}
+              onChangeInput={(e) => {
+                setInputField(e.target.value);
+              }}
+              ref={inputRef}
+            />
+            <FAQCategoryCard />
+            <FAQAccordion value={inputField} />
+          </>
+        ) : (
+          <div>
+            <ReportHeader
+              onChangeInputReport={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setInputFieldReport(e.target.value);
               }}
             />
-          )}
-        </div>
-      )}
-    </div>
+            <ReportIssueTab
+              onTicketClick={(ticket: TicketCardProps) => {
+                setSelectedTicket(ticket);
+              }}
+              valueReport={inputFieldReport}
+            />
+            {isOpen && (
+              <ModalDetail
+                onClose={() => {
+                  setIsOpen(false);
+                }}
+              />
+            )}
+          </div>
+        )}
+      </div>
+    </>
   );
 }
