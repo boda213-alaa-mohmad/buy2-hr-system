@@ -10,6 +10,9 @@ import ReportIssueTab from "@/features/Support/components/ReportIssueTab/ReportI
 import ModalDetail from "@/features/Support/components/ModalDetail/ModalDetail";
 import { TicketCardProps } from "@/features/Support/types/support";
 
+// ? I do that because I will pass this to filter button (open, in progress, solved)
+export type Status = "All" | "Open" | "In progress" | "Solved";
+
 export default function Support() {
   const [choose, setChoose] = useState<ChooseType>("FAQ");
   const [isInitialized, setIsInitialized] = useState(false);
@@ -19,6 +22,7 @@ export default function Support() {
   const [selectedTicket, setSelectedTicket] = useState<TicketCardProps | null>(
     null,
   );
+  const [chooseFilter, setChooseFilter] = useState<Status>("All");
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -57,14 +61,20 @@ export default function Support() {
         ) : (
           <div>
             <ReportHeader
+              valueReport={inputFieldReport}
               onChangeInputReport={(e: React.ChangeEvent<HTMLInputElement>) => {
                 setInputFieldReport(e.target.value);
               }}
+              onFilter={(status: Status) => {
+                setChooseFilter(status);
+              }}
+              chooseOption={chooseFilter}
             />
             <ReportIssueTab
               onTicketClick={(ticket: TicketCardProps) => {
                 setSelectedTicket(ticket);
               }}
+              valueOption={chooseFilter}
               valueReport={inputFieldReport}
             />
             {isOpen && (
