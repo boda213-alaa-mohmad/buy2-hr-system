@@ -73,6 +73,8 @@ export default function Support() {
             <ReportIssueTab
               onTicketClick={(ticket: TicketCardProps) => {
                 setSelectedTicket(ticket);
+                console.log(selectedTicket);
+                setIsOpen(true);
               }}
               valueOption={chooseFilter}
               valueReport={inputFieldReport}

@@ -31,7 +31,7 @@ export default function ProfileHeader() {
           >
             {imageProfile.image ? (
               <Image
-                src={imageProfile.image}
+                src={`${imageProfile.image}`}
                 alt="profile avatar"
                 width={40}
                 height={40}

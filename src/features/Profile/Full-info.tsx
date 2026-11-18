@@ -42,7 +42,7 @@ export default function FullInfo({ onClose }: { onClose: () => void }) {
             >
               {imageProfile.image ? (
                 <Image
-                  src={imageProfile.image}
+                  src={`${imageProfile.image}`}
                   alt="user icon"
                   width={45}
                   height={45}
