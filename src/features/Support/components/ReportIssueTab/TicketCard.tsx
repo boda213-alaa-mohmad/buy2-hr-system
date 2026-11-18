@@ -1,14 +1,17 @@
+"use client";
 import { Ticket } from "lucide-react";
 import styles from "./TicketCard.module.css";
 import { TicketCardProps } from "../../types/support";
 
+interface TicketCardComponentProps {
+  ticket: TicketCardProps;
+  onClick?: () => void;
+}
+
 export default function TicketCard({
-  title,
-  ticketNumber,
-  status,
-  date,
+  ticket,
   onClick,
-}: TicketCardProps) {
+}: TicketCardComponentProps) {
   const getStatusClass = (status: string) => {
     switch (status) {
       case "Open":
@@ -29,15 +32,17 @@ export default function TicketCard({
           <Ticket size={20} />
         </div>
         <div className={styles.cardInfo}>
-          <h3 className={styles.cardTitle}>{title}</h3>
-          <span className={styles.ticketNumber}>{ticketNumber}</span>
+          <h3 className={styles.cardTitle}>{ticket.title}</h3>
+          <span className={styles.ticketNumber}>{ticket.ticketNumber}</span>
         </div>
-        <span className={`${styles.statusBadge} ${getStatusClass(status)}`}>
-          {status}
+        <span
+          className={`${styles.statusBadge} ${getStatusClass(ticket.status ?? "Open")}`}
+        >
+          {ticket.status}
         </span>
       </div>
       <div className={styles.cardFooter}>
-        <span className={styles.ticketDate}>{date}</span>
+        <span className={styles.ticketDate}>{ticket.date}</span>
       </div>
     </div>
   );

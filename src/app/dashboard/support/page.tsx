@@ -10,51 +10,83 @@ import ReportIssueTab from "@/features/Support/components/ReportIssueTab/ReportI
 import ModalDetail from "@/features/Support/components/ModalDetail/ModalDetail";
 import { TicketCardProps } from "@/features/Support/types/support";
 
+// ? I do that because I will pass this to filter button (open, in progress, solved)
+export type Status = "All" | "Open" | "In progress" | "Solved";
+
 export default function Support() {
   const [choose, setChoose] = useState<ChooseType>("FAQ");
+  const [isInitialized, setIsInitialized] = useState(false);
   const [inputField, setInputField] = useState<string>("");
+  const [inputFieldReport, setInputFieldReport] = useState<string>("");
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedTicket, setSelectedTicket] = useState<TicketCardProps | null>(
     null,
   );
+  const [chooseFilter, setChooseFilter] = useState<Status>("All");
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     inputRef.current?.focus();
   }, []);
 
+  useEffect(() => {
+    const chooseSupport = localStorage.getItem("chosen-support");
+    if (chooseSupport === "FAQ" || chooseSupport === "Report issue")
+      setChoose(chooseSupport);
+
+    setIsInitialized(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isInitialized) return;
+    localStorage.setItem("chosen-support", choose);
+  }, [choose, isInitialized]);
+
   return (
-    <div>
-      <SupportView choose={choose} onTabChange={setChoose} />
-      {choose === "FAQ" ? (
-        <>
-          <FAQSearch
-            input={inputField}
-            onChangeInput={(e) => {
-              setInputField(e.target.value);
-            }}
-            ref={inputRef}
-          />
-          <FAQCategoryCard />
-          <FAQAccordion value={inputField} />
-        </>
-      ) : (
-        <div>
-          <ReportHeader />
-          <ReportIssueTab
-            onTicketClick={(ticket: TicketCardProps) => {
-              setSelectedTicket(ticket);
-            }}
-          />
-          {isOpen && (
-            <ModalDetail
-              onClose={() => {
-                setIsOpen(false);
+    <>
+      <div>
+        <SupportView choose={choose} onTabChange={setChoose} />
+        {choose === "FAQ" ? (
+          <>
+            <FAQSearch
+              input={inputField}
+              onChangeInput={(e) => {
+                setInputField(e.target.value);
               }}
+              ref={inputRef}
             />
-          )}
-        </div>
-      )}
-    </div>
+            <FAQCategoryCard />
+            <FAQAccordion value={inputField} />
+          </>
+        ) : (
+          <div>
+            <ReportHeader
+              valueReport={inputFieldReport}
+              onChangeInputReport={(e: React.ChangeEvent<HTMLInputElement>) => {
+                setInputFieldReport(e.target.value);
+              }}
+              onFilter={(status: Status) => {
+                setChooseFilter(status);
+              }}
+              chooseOption={chooseFilter}
+            />
+            <ReportIssueTab
+              onTicketClick={(ticket: TicketCardProps) => {
+                setSelectedTicket(ticket);
+              }}
+              valueOption={chooseFilter}
+              valueReport={inputFieldReport}
+            />
+            {isOpen && (
+              <ModalDetail
+                onClose={() => {
+                  setIsOpen(false);
+                }}
+              />
+            )}
+          </div>
+        )}
+      </div>
+    </>
   );
 }

@@ -11,3 +11,11 @@
   margin-left: 24px;
   margin-right: 24px;
 }
+
+.noResults {
+  font-size: 22px;
+  text-align: center;
+  color: var(--color-red-600);
+  font-weight: 600;
+  padding-bottom: 8px;
+}

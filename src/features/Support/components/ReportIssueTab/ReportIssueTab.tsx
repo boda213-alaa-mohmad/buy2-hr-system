@@ -1,116 +1,50 @@
 "use client";
-import { useState } from "react";
+
 import { TicketCardProps } from "../../types/support";
 import styles from "./ReportIssueTab.module.css";
 import TicketCard from "./TicketCard";
 import EmptyTicketsState from "./EmptyTicketsState";
-
-export const MOCK_TICKETS: TicketCardProps[] = [
-  // {
-  //   id: "1",
-  //   title: "How to uninstall the...",
-  //   ticketNumber: "334533",
-  //   status: "Open",
-  //   date: "Mar 23, 2022",
-  // },
-  // {
-  //   id: "2",
-  //   title: "How to uninstall the...",
-  //   ticketNumber: "334589",
-  //   status: "Solved",
-  //   date: "Mar 23, 2022",
-  // },
-  // {
-  //   id: "3",
-  //   title: "How to uninstall the...",
-  //   ticketNumber: "334612",
-  //   status: "In progress",
-  //   date: "Mar 23, 2022",
-  // },
-  // {
-  //   id: "4",
-  //   title: "How to uninstall the...",
-  //   ticketNumber: "334670",
-  //   status: "Open",
-  //   date: "Mar 23, 2022",
-  // },
-  // {
-  //   id: "5",
-  //   title: "How to uninstall the...",
-  //   ticketNumber: "334715",
-  //   status: "Solved",
-  //   date: "Mar 23, 2022",
-  // },
-  // {
-  //   id: "6",
-  //   title: "How to uninstall the...",
-  //   ticketNumber: "334780",
-  //   status: "In progress",
-  //   date: "Mar 23, 2022",
-  // },
-  // {
-  //   id: "7",
-  //   title: "How to uninstall the...",
-  //   ticketNumber: "334821",
-  //   status: "Open",
-  //   date: "Mar 23, 2022",
-  // },
-  // {
-  //   id: "8",
-  //   title: "How to uninstall the...",
-  //   ticketNumber: "334899",
-  //   status: "Solved",
-  //   date: "Mar 23, 2022",
-  // },
-  // {
-  //   id: "9",
-  //   title: "How to uninstall the...",
-  //   ticketNumber: "334942",
-  //   status: "In progress",
-  //   date: "Mar 23, 2022",
-  // },
-  // {
-  //   id: "10",
-  //   title: "How to uninstall the...",
-  //   ticketNumber: "335011",
-  //   status: "Solved",
-  //   date: "Mar 23, 2022",
-  // },
-  // {
-  //   id: "11",
-  //   title: "How to uninstall the...",
-  //   ticketNumber: "335084",
-  //   status: "In progress",
-  //   date: "Mar 23, 2022",
-  // },
-  // {
-  //   id: "12",
-  //   title: "How to uninstall the...",
-  //   ticketNumber: "335120",
-  //   status: "Solved",
-  //   date: "Mar 23, 2022",
-  // },
-];
+import { MOCK_TICKETS } from "../../data/mockSupportData";
+import { Status } from "@/app/dashboard/support/page";
 
 export default function ReportIssueTab({
   onTicketClick,
+  valueReport,
+  valueOption,
 }: {
   onTicketClick: (ticket: TicketCardProps) => void;
+  valueReport: string;
+  valueOption: Status;
 }) {
-  const [isEmpty, setIsEmpty] = useState<boolean>(true);
+ const ticketsToDisplay = MOCK_TICKETS.filter((ticket) => {
+   const matchesSearch = ticket.title
+     .toLowerCase()
+     .includes(valueReport.trim().toLowerCase());
+
+   const matchesStatus = valueOption === "All" || ticket.status === valueOption;
+
+   return matchesSearch && matchesStatus;
+ });
+
   return (
     <>
-      {MOCK_TICKETS.length === 0 ? <EmptyTicketsState /> : (
+      {MOCK_TICKETS.length === 0 ? (
+        <EmptyTicketsState />
+      ) : ticketsToDisplay.length === 0 ? (
+        <div className={styles.container}>
+          <p className={styles.noResults}>
+            No tickets found
+            {valueReport ? ` matching "${valueReport}"` : ""}
+            {valueOption !== "All" ? ` with status "${valueOption}"` : ""}.
+          </p>
+        </div>
+      ) : (
         <div className={styles.container}>
           <div className={styles.ticketsGrid}>
-            {MOCK_TICKETS.map((ticket) => (
+            {ticketsToDisplay.map((ticket) => (
               <TicketCard
                 key={ticket.id}
-                id={ticket.id}
-                title={ticket.title}
-                ticketNumber={ticket.ticketNumber}
-                status={ticket.status}
-                date={ticket.date}
+                ticket={ticket}
                 onClick={() => onTicketClick(ticket)}
               />
             ))}

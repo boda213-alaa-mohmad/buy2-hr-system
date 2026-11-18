@@ -9,7 +9,7 @@ export interface TicketCardProps {
   id: string;
   title: string;
   ticketNumber: string;
-  status: "Open" | "In progress" | "Solved";
+  status?: "Open" | "In progress" | "Solved";
   date: string;
   onClick?: () => void;
 }

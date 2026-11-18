@@ -1,8 +1,22 @@
+"use client";
 import Link from "next/link";
+import { useState } from "react";
 import { Search, SlidersHorizontal, Plus } from "lucide-react";
 import styles from "./ReportHeader.module.css";
+import { Status } from "@/app/dashboard/support/page";
+export default function ReportHeader({
+  valueReport,
+  onChangeInputReport,
+  onFilter,
+  chooseOption,
+}: {
+  valueReport: string;
+  onChangeInputReport: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFilter: (status: Status) => void;
+  chooseOption: Status;
+}) {
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-export default function ReportHeader() {
   return (
     <div className={styles.container}>
       {/* Header Controls */}
@@ -14,20 +28,81 @@ export default function ReportHeader() {
             className={styles.searchInput}
             placeholder="Search"
             aria-label="Search tickets"
+            value={valueReport}
+            onChange={onChangeInputReport}
           />
         </div>
 
         <div className={styles.actionsGroup}>
-          <button type="button" className={styles.filterButton}>
-            <SlidersHorizontal size={16} aria-hidden="true" />
-            <span>Filter</span>
-          </button>
-
-          <Link href={`/dashboard/support/new-ticket`}>
-            <button type="button" className={styles.addButton}>
-              <Plus size={18} aria-hidden="true" />
-              <span>Add ticket</span>
+          {/* Filter Wrapper */}
+          <div className={styles.filterWrapper}>
+            <button
+              type="button"
+              className={styles.filterButton}
+              onClick={() => setIsFilterOpen(!isFilterOpen)}
+            >
+              <SlidersHorizontal size={16} aria-hidden="true" />
+              <span>{chooseOption}</span>
             </button>
+
+            {isFilterOpen && (
+              <div className={styles.filterDropdown}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    onFilter("All");
+                    setIsFilterOpen(false);
+                  }}
+                  className={styles.filterOption}
+                >
+                  <span className={`${styles.statusDot} ${styles.dotAll}`} />
+                  <span>All</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    onFilter("Open");
+                    setIsFilterOpen(false);
+                  }}
+                  className={styles.filterOption}
+                >
+                  <span className={`${styles.statusDot} ${styles.dotOpen}`} />
+                  <span>Open</span>
+                </button>
+                <button
+                  type="button"
+                  className={styles.filterOption}
+                  onClick={() => {
+                    onFilter("In progress");
+                    setIsFilterOpen(false);
+                  }}
+                >
+                  <span
+                    className={`${styles.statusDot} ${styles.dotInProgress}`}
+                  />
+                  <span>In progress</span>
+                </button>
+                <button
+                  type="button"
+                  className={styles.filterOption}
+                  onClick={() => {
+                    onFilter("Solved");
+                    setIsFilterOpen(false);
+                  }}
+                >
+                  <span className={`${styles.statusDot} ${styles.dotSolved}`} />
+                  <span>Solved</span>
+                </button>
+              </div>
+            )}
+          </div>
+
+          <Link
+            href="/dashboard/support/new-ticket"
+            className={styles.addButton}
+          >
+            <Plus size={18} aria-hidden="true" />
+            <span>Add ticket</span>
           </Link>
         </div>
       </div>
