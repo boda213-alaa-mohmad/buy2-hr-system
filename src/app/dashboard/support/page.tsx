@@ -9,9 +9,7 @@ import ReportHeader from "@/features/Support/components/ReportIssueTab/ReportHea
 import ReportIssueTab from "@/features/Support/components/ReportIssueTab/ReportIssueTab";
 import ModalDetail from "@/features/Support/components/ModalDetail/ModalDetail";
 import { TicketCardProps } from "@/features/Support/types/support";
-
-// ? I do that because I will pass this to filter button (open, in progress, solved)
-export type Status = "All" | "Open" | "In progress" | "Solved";
+import { Status } from "@/features/Support/types/support";
 
 export default function Support() {
   const [choose, setChoose] = useState<ChooseType>("FAQ");
@@ -24,6 +22,17 @@ export default function Support() {
   );
   const [chooseFilter, setChooseFilter] = useState<Status>("All");
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    function keyPress(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      }
+    }
+    window.addEventListener("keydown", keyPress);
+    return () => window.removeEventListener("keydown", keyPress);
+  }, [isOpen]);
 
   useEffect(() => {
     inputRef.current?.focus();
@@ -73,17 +82,16 @@ export default function Support() {
             <ReportIssueTab
               onTicketClick={(ticket: TicketCardProps) => {
                 setSelectedTicket(ticket);
-                console.log(selectedTicket);
                 setIsOpen(true);
               }}
               valueOption={chooseFilter}
               valueReport={inputFieldReport}
             />
-            {isOpen && (
+            {/* I do that shape because of warnings of line 22  */}
+            {isOpen && selectedTicket && (
               <ModalDetail
-                onClose={() => {
-                  setIsOpen(false);
-                }}
+                onClose={() => setIsOpen(false)}
+                valuesCard={selectedTicket}
               />
             )}
           </div>

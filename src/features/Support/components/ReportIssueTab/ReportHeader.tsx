@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Search, SlidersHorizontal, Plus } from "lucide-react";
 import styles from "./ReportHeader.module.css";
-import { Status } from "@/app/dashboard/support/page";
+import { Status } from "../../types/support";
 export default function ReportHeader({
   valueReport,
   onChangeInputReport,

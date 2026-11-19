@@ -5,7 +5,7 @@ import styles from "./ReportIssueTab.module.css";
 import TicketCard from "./TicketCard";
 import EmptyTicketsState from "./EmptyTicketsState";
 import { MOCK_TICKETS } from "../../data/mockSupportData";
-import { Status } from "@/app/dashboard/support/page";
+import { Status } from "../../types/support";
 
 export default function ReportIssueTab({
   onTicketClick,
@@ -16,15 +16,16 @@ export default function ReportIssueTab({
   valueReport: string;
   valueOption: Status;
 }) {
- const ticketsToDisplay = MOCK_TICKETS.filter((ticket) => {
-   const matchesSearch = ticket.title
-     .toLowerCase()
-     .includes(valueReport.trim().toLowerCase());
+  const ticketsToDisplay = MOCK_TICKETS.filter((ticket) => {
+    const matchesSearch = ticket.title
+      .toLowerCase()
+      .includes(valueReport.trim().toLowerCase());
 
-   const matchesStatus = valueOption === "All" || ticket.status === valueOption;
+    const matchesStatus =
+      valueOption === "All" || ticket.status === valueOption;
 
-   return matchesSearch && matchesStatus;
- });
+    return matchesSearch && matchesStatus;
+  });
 
   return (
     <>

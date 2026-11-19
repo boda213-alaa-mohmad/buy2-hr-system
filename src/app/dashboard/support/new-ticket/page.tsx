@@ -8,10 +8,15 @@ const chooseCategory: { id: string; title: string; value: string }[] = [
   { id: "3", title: "General Inquiry", value: "general" },
 ];
 
-const choosePriority: { id: string; title: string; value: string }[] = [
-  { id: "1", title: "Low", value: "low" },
-  { id: "2", title: "Medium", value: "medium" },
-  { id: "3", title: "High ", value: "high" },
+const chooseStatus: {
+  id: string;
+  title: string;
+  value: string;
+  color: string;
+}[] = [
+  { id: "1", title: "Open", value: "Open", color: "#4f4bac" },
+  { id: "2", title: "In Progress", value: "In progress", color: "#C24C53" },
+  { id: "3", title: "Solved", value: "Solved", color: "#18cc2a" },
 ];
 
 export default function NewTicket() {
@@ -27,6 +32,7 @@ export default function NewTicket() {
             <ChevronLeft size={18} aria-hidden="true" />
             <span>Back</span>
           </Link>
+
           <h1 className={styles.title}>New Ticket</h1>
         </div>
 
@@ -38,6 +44,7 @@ export default function NewTicket() {
           >
             Discard
           </button>
+
           <button
             type="button"
             className={styles.saveBtn}
@@ -47,8 +54,6 @@ export default function NewTicket() {
           </button>
         </nav>
       </header>
-
-      {/*  */}
 
       <div className={styles.container}>
         {/* Row 1: Subject & Description */}
@@ -64,42 +69,48 @@ export default function NewTicket() {
           </div>
         </div>
 
-        {/* Row 2: Category & Priority */}
+        {/* Row 2: Category & Status */}
         <div className={styles.row}>
           <div className={styles.fieldGroup}>
             <label className={styles.label}>Category</label>
+
             <div className={styles.selectWrapper}>
               <select className={styles.select} defaultValue="">
                 <option value="" disabled hidden>
                   Select
                 </option>
-                {chooseCategory.map((category) => {
-                  return (
-                    <option key={category.id} value={category.value}>
-                      {category.title}
-                    </option>
-                  );
-                })}
+
+                {chooseCategory.map((category) => (
+                  <option key={category.id} value={category.value}>
+                    {category.title}
+                  </option>
+                ))}
               </select>
+
               <ChevronDown className={styles.arrowIcon} size={18} />
             </div>
           </div>
 
           <div className={styles.fieldGroup}>
-            <label className={styles.label}>Priority</label>
+            <label className={styles.label}>Status</label>
+
             <div className={styles.selectWrapper}>
               <select className={styles.select} defaultValue="">
                 <option value="" disabled hidden>
                   Select
                 </option>
-                {choosePriority.map((category) => {
-                  return (
-                    <option key={category.id} value={category.value}>
-                      {category.title}
-                    </option>
-                  );
-                })}
+
+                {chooseStatus.map((status) => (
+                  <option
+                    key={status.id}
+                    value={status.value}
+                    style={{ color: status.color }}
+                  >
+                    {status.title}
+                  </option>
+                ))}
               </select>
+
               <ChevronDown className={styles.arrowIcon} size={18} />
             </div>
           </div>

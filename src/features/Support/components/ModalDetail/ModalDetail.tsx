@@ -1,7 +1,14 @@
 import { Send, X } from "lucide-react";
 import styles from "./ModalDetail.module.css";
+import { TicketCardProps } from "../../types/support";
 
-export default function ModalDetail({ onClose }: { onClose: () => void }) {
+export default function ModalDetail({
+  onClose,
+  valuesCard,
+}: {
+  onClose: () => void;
+  valuesCard: TicketCardProps;
+}) {
   return (
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.container} onClick={(e) => e.stopPropagation()}>
@@ -16,27 +23,38 @@ export default function ModalDetail({ onClose }: { onClose: () => void }) {
           <div className={styles["content-ticket-card"]}>
             <div className={styles.ticketContent}>
               <p>Ticket ID</p>
-              <p>1234</p>
+              <p>{valuesCard.ticketNumber}</p>
             </div>
             <div className={styles.ticketContent}>
               <p>Subject</p>
-              <p>{"can't update the app"}</p>
+              <p>{valuesCard.title}</p>
             </div>
             <div className={styles.ticketContent}>
               <p>Submitted</p>
-              <p>Mar 3, 2022</p>
+              <p>{valuesCard.date}</p>
             </div>
             <div className={styles.ticketContent}>
               <p>Ticket Status</p>
-              <p>Open</p>
+              <p
+                style={{
+                  color:
+                    valuesCard.status === "Open"
+                      ? "#4f4bac"
+                      : valuesCard.status === "In progress"
+                        ? "#C24C53"
+                        : "#18cc2a",
+                }}
+              >
+                {valuesCard.status}
+              </p>
             </div>
             <div className={styles.ticketContent}>
               <p>Description</p>
-              <p>Can’t update the app</p>
+              <p>{valuesCard.description}</p>
             </div>
             <div className={styles.ticketContent}>
               <p>Category</p>
-              <p>update</p>
+              <p>{valuesCard.category}</p>
             </div>
           </div>
 
