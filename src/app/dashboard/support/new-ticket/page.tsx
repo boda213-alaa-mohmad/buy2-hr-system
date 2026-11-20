@@ -1,6 +1,13 @@
+"use client";
 import Link from "next/link";
 import styles from "./page.module.css";
 import { ChevronDown, ChevronLeft } from "lucide-react";
+import { useState, useContext } from "react";
+import { TicketContext } from "@/context/ticketProvider";
+import { Status } from "@/features/Support/types/support";
+import { useRouter } from "next/navigation";
+import IncompleteFieldsModal from "@/features/Support/components/ReportIssueTab/IncompleteFieldsModal";
+import DiscardConfirmModal from "@/features/Support/components/ReportIssueTab/DiscardConfirmModal";
 
 const chooseCategory: { id: string; title: string; value: string }[] = [
   { id: "1", title: "Technical Support", value: "technical" },
@@ -20,6 +27,43 @@ const chooseStatus: {
 ];
 
 export default function NewTicket() {
+  const router = useRouter();
+  const { ticket, allTickets, onSetTicket, onSetAllTickets } =
+    useContext(TicketContext);
+
+  const [alertInComplete, setAlertInComplete] = useState<boolean>(false);
+  const [alertDiscard, setAlertDiscard] = useState<boolean>(false);
+
+  function clearFields() {
+    onSetTicket({
+      category: "",
+      description: "",
+      subject: "",
+      status: "" as Status,
+    });
+  }
+
+  function saveTicket() {
+    if (
+      !ticket.subject ||
+      !ticket.description ||
+      !ticket.category ||
+      !ticket.status
+    ) {
+      setAlertInComplete(true);
+      return;
+    }
+    const updateTickets = [...allTickets, ticket];
+    onSetAllTickets(updateTickets);
+    clearFields();
+    router.push("/dashboard/support");
+  }
+
+  function handleConfirmDiscard() {
+    clearFields();
+    setAlertDiscard(false);
+  }
+
   return (
     <>
       <header className={styles.header} role="banner">
@@ -41,6 +85,7 @@ export default function NewTicket() {
             type="button"
             className={styles.discardBtn}
             aria-label="Discard changes"
+            onClick={() => setAlertDiscard(true)}
           >
             Discard
           </button>
@@ -49,6 +94,7 @@ export default function NewTicket() {
             type="button"
             className={styles.saveBtn}
             aria-label="Save ticket changes"
+            onClick={saveTicket}
           >
             Save ticket
           </button>
@@ -60,12 +106,34 @@ export default function NewTicket() {
         <div className={styles.row}>
           <div className={styles.fieldGroup}>
             <label className={styles.label}>Subject</label>
-            <input type="text" placeholder="Select" className={styles.input} />
+            <input
+              type="text"
+              placeholder="Select"
+              className={styles.input}
+              value={ticket.subject}
+              onChange={(e) => {
+                onSetTicket({
+                  ...ticket,
+                  subject: e.target.value,
+                });
+              }}
+            />
           </div>
 
           <div className={styles.fieldGroup}>
             <label className={styles.label}>Description</label>
-            <input type="text" placeholder="Select" className={styles.input} />
+            <input
+              type="text"
+              placeholder="Select"
+              className={styles.input}
+              value={ticket.description}
+              onChange={(e) => {
+                onSetTicket({
+                  ...ticket,
+                  description: e.target.value,
+                });
+              }}
+            />
           </div>
         </div>
 
@@ -75,7 +143,16 @@ export default function NewTicket() {
             <label className={styles.label}>Category</label>
 
             <div className={styles.selectWrapper}>
-              <select className={styles.select} defaultValue="">
+              <select
+                className={styles.select}
+                value={ticket.category}
+                onChange={(e) => {
+                  onSetTicket({
+                    ...ticket,
+                    category: e.target.value,
+                  });
+                }}
+              >
                 <option value="" disabled hidden>
                   Select
                 </option>
@@ -95,7 +172,16 @@ export default function NewTicket() {
             <label className={styles.label}>Status</label>
 
             <div className={styles.selectWrapper}>
-              <select className={styles.select} defaultValue="">
+              <select
+                className={styles.select}
+                value={ticket.status}
+                onChange={(e) => {
+                  onSetTicket({
+                    ...ticket,
+                    status: e.target.value as Status,
+                  });
+                }}
+              >
                 <option value="" disabled hidden>
                   Select
                 </option>
@@ -115,6 +201,17 @@ export default function NewTicket() {
             </div>
           </div>
         </div>
+
+        {alertInComplete && (
+          <IncompleteFieldsModal onClose={() => setAlertInComplete(false)} />
+        )}
+
+        {alertDiscard && (
+          <DiscardConfirmModal
+            onConfirm={handleConfirmDiscard}
+            onClose={() => setAlertDiscard(false)}
+          />
+        )}
       </div>
     </>
   );

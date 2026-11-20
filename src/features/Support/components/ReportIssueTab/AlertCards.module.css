@@ -1,0 +1,179 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 100;
+  animation: fadeInOverlay 0.25s ease-out forwards;
+}
+
+.modalCard {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding: 36px 28px 28px;
+  text-align: center;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  animation: modalPopIn 0.32s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.closeBtn:hover {
+  background-color: #f3f4f6;
+  transform: rotate(90deg);
+}
+
+.iconCircle {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: iconBounceIn 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+}
+
+.warningCircle {
+  background-color: #fef3c7;
+  box-shadow: 0 0 0 10px rgba(254, 243, 199, 0.45);
+}
+
+.warningIcon {
+  color: #d97706;
+}
+
+.title {
+  margin: 0 0 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.description {
+  margin: 0 auto 28px;
+  max-width: 320px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #6b7280;
+}
+
+.singleBtnWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.singleBtnWrapper .primaryBtn {
+  width: 100%;
+}
+
+.actionsRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cancelBtn {
+  flex: 1;
+  padding: 13px 20px;
+  border: 1.5px solid #23429b;
+  border-radius: 12px;
+  background-color: #ffffff;
+  color: #23429b;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.12s ease;
+}
+
+.cancelBtn:hover {
+  background-color: #f8faff;
+}
+
+.cancelBtn:active {
+  transform: scale(0.98);
+}
+
+.primaryBtn {
+  flex: 1;
+  padding: 13px 20px;
+  border: 1.5px solid #23429b;
+  border-radius: 12px;
+  background-color: #23429b;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    opacity 0.2s ease,
+    transform 0.12s ease;
+}
+
+.primaryBtn:hover {
+  opacity: 0.92;
+}
+
+.primaryBtn:active {
+  transform: scale(0.98);
+}
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(2px);
+  }
+}
+
+@keyframes modalPopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(16px) scale(0.92);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes iconBounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  70% {
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -1,11 +1,11 @@
 "use client";
-
-import { TicketCardProps } from "../../types/support";
+import { TicketCardProps, Status } from "../../types/support";
 import styles from "./ReportIssueTab.module.css";
 import TicketCard from "./TicketCard";
 import EmptyTicketsState from "./EmptyTicketsState";
 import { MOCK_TICKETS } from "../../data/mockSupportData";
-import { Status } from "../../types/support";
+import { useContext } from "react";
+import { TicketContext } from "@/context/ticketProvider";
 
 export default function ReportIssueTab({
   onTicketClick,
@@ -16,10 +16,34 @@ export default function ReportIssueTab({
   valueReport: string;
   valueOption: Status;
 }) {
-  const ticketsToDisplay = MOCK_TICKETS.filter((ticket) => {
+  const { allTickets } = useContext(TicketContext);
+
+  const formattedNewTickets: TicketCardProps[] = allTickets.map(
+    (item, index) => ({
+      id: `custom-${index}-${item.subject}`,
+      title: item.subject,
+      ticketNumber: `300${100 + index}`,
+      status:
+        item.status === "Open" ||
+        item.status === "In progress" ||
+        item.status === "Solved"
+          ? item.status
+          : "Open",
+      date: "Just now",
+      description: item.description,
+      category: item.category,
+    }),
+  );
+
+  const combinedTickets: TicketCardProps[] = [
+    ...formattedNewTickets,
+    ...MOCK_TICKETS,
+  ];
+
+  const ticketsToDisplay = combinedTickets.filter((ticket) => {
     const matchesSearch = ticket.title
       .toLowerCase()
-      .includes(valueReport.trim().toLowerCase());
+      .includes(valueReport.toLowerCase());
 
     const matchesStatus =
       valueOption === "All" || ticket.status === valueOption;
@@ -29,7 +53,7 @@ export default function ReportIssueTab({
 
   return (
     <>
-      {MOCK_TICKETS.length === 0 ? (
+      {combinedTickets.length === 0 ? (
         <EmptyTicketsState />
       ) : ticketsToDisplay.length === 0 ? (
         <div className={styles.container}>

@@ -1,5 +1,6 @@
 import Header from "@/Components/Layouts/header/Header";
 import SideBar from "@/Components/Layouts/sidebar/Sidebar";
+import TicketProvider from "@/context/ticketProvider";
 
 export default function DashboardLayout({
   children,
@@ -7,29 +8,31 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        gap: "24px",
-        width: "100%",
-        minHeight: "100vh",
-      }}
-    >
-      <SideBar />
-
+    <TicketProvider>
       <div
         style={{
-          flex: 1,
-          minWidth: 0,
           display: "flex",
-          flexDirection: "column",
-          marginRight: "50px",
+          gap: "24px",
+          width: "100%",
+          minHeight: "100vh",
         }}
       >
-        <Header />
+        <SideBar />
 
-        <main style={{ width: "100%" }}>{children}</main>
+        <div
+          style={{
+            flex: 1,
+            minWidth: 0,
+            display: "flex",
+            flexDirection: "column",
+            marginRight: "50px",
+          }}
+        >
+          <Header />
+
+          <main style={{ width: "100%" }}>{children}</main>
+        </div>
       </div>
-    </div>
+    </TicketProvider>
   );
 }
