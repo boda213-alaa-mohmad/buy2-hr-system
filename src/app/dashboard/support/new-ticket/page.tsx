@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import styles from "./page.module.css";
-import { ChevronDown, ChevronLeft } from "lucide-react";
+import { ChevronDown, ChevronLeft, Loader2 } from "lucide-react";
 import { useState, useContext } from "react";
 import { TicketContext } from "@/context/ticketProvider";
 import { Status } from "@/features/Support/types/support";
@@ -33,6 +33,7 @@ export default function NewTicket() {
 
   const [alertInComplete, setAlertInComplete] = useState<boolean>(false);
   const [alertDiscard, setAlertDiscard] = useState<boolean>(false);
+  const [isSaving, setIsSaving] = useState<boolean>(false);
 
   function clearFields() {
     onSetTicket({
@@ -43,7 +44,7 @@ export default function NewTicket() {
     });
   }
 
-  function saveTicket() {
+  async function saveTicket() {
     if (
       !ticket.subject ||
       !ticket.description ||
@@ -53,6 +54,10 @@ export default function NewTicket() {
       setAlertInComplete(true);
       return;
     }
+
+    setIsSaving(true);
+    await new Promise((res) => setTimeout(res, 1500));
+
     const updateTickets = [...allTickets, ticket];
     onSetAllTickets(updateTickets);
     clearFields();
@@ -86,6 +91,7 @@ export default function NewTicket() {
             className={styles.discardBtn}
             aria-label="Discard changes"
             onClick={() => setAlertDiscard(true)}
+            disabled={isSaving}
           >
             Discard
           </button>
@@ -95,8 +101,16 @@ export default function NewTicket() {
             className={styles.saveBtn}
             aria-label="Save ticket changes"
             onClick={saveTicket}
+            disabled={isSaving}
           >
-            Save ticket
+            {isSaving ? (
+              <>
+                <Loader2 size={16} className={styles.spinner} />
+                <span>Saving...</span>
+              </>
+            ) : (
+              "Save ticket"
+            )}
           </button>
         </nav>
       </header>
